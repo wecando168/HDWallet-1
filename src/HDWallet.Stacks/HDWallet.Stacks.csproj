@@ -21,7 +21,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="HDWallet.Secp256k1" Version="0.2.1" />
         <PackageReference Include="Nethereum.Web3" Version="3.8.0" />
         <PackageReference Include="NBitcoin.Secp256k1" Version="1.0.1" />
         <PackageReference Include="NBitcoin" Version="5.0.27" />
@@ -29,6 +28,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
+        <ProjectReference Include="..\HDWallet.Secp256k1\HDWallet.Secp256k1.csproj" />
     </ItemGroup>
 
 </Project>
