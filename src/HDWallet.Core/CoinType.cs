@@ -13,6 +13,7 @@ namespace HDWallet.Core
         Tezos = 1729,
         Avalanche = 9000,
         FileCoin = 461,
-        Solana = 501
+        Solana = 501,
+        Blockstack = 5757
     }
 }
