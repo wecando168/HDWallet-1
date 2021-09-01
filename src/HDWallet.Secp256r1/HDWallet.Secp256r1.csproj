@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+
+    <Title>HDWallet.Secp256r1</Title>
+    <Description></Description>
+    <Version>0.1.0</Version>
+
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/farukterzioglu/HDWallet</PackageProjectUrl>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>HDWallet;Secp256r1;Neo;Blockchain</PackageTags>
+    <PackageId>HDWallet.Secp256r1</PackageId>
+
+    <Authors>Faruk Terzioglu</Authors>
+    <Company></Company>
+    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Neo" Version="3.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
+    <ProjectReference Include="..\HDWallet.Secp256\HDWallet.Secp256.csproj" />
+  </ItemGroup>
+
+</Project>
