@@ -21,7 +21,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Akka" Version="1.4.24" />
     <PackageReference Include="Nethereum.Web3" Version="3.8.0" />
     <PackageReference Include="NBitcoin.Secp256k1" Version="1.0.1" />
     <PackageReference Include="NBitcoin" Version="5.0.27" />
