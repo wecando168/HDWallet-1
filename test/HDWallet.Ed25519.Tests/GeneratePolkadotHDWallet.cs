@@ -130,7 +130,7 @@ namespace HDWallet.Ed25519.Tests
 
             Console.WriteLine($"Path: {path}, address: {address}");
             Console.WriteLine($"Public key: {coinTypeWallet.PublicKey.ToHexString()}");
-            Console.WriteLine($"Private key: {coinTypeWallet.PrivateKey.ToHexString()}");
+            Console.WriteLine($"Private key: {coinTypeWallet.PrivateKeyBytes.ToHexString()}");
         }
     }
 }

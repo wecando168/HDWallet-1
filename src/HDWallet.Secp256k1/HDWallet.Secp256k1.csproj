@@ -5,7 +5,7 @@
 
     <Title>HDWallet.Secp256k1</Title>
     <Description></Description>
-    <Version>0.2.3.2</Version>
+    <Version>1.0.0</Version>
 
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl> 
@@ -28,6 +28,7 @@
 
  <ItemGroup>
    <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
+   <ProjectReference Include="..\HDWallet.Secp256\HDWallet.Secp256.csproj" />
  </ItemGroup>
   
 </Project>

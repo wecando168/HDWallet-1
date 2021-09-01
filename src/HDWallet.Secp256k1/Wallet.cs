@@ -10,8 +10,26 @@ namespace HDWallet.Secp256k1
     {
         public Key PrivateKey;
         public PubKey PublicKey => PrivateKey.PubKey;
-        public uint Index;
+
+        public uint Index { get; set; }
         public string Address => AddressGenerator.GenerateAddress(PublicKey.ToBytes());
+
+        private byte[] privateKeyBytes;
+
+        public byte[] PrivateKeyBytes
+        {
+            get
+            {
+                return privateKeyBytes;
+            }
+            set
+            {
+                var hexEncodeData = Encoders.Hex.EncodeData(value);
+                PrivateKey = PrivateKeyParse(hexEncodeData);
+                privateKeyBytes = value;
+            }
+        }
+
 
         internal IAddressGenerator AddressGenerator { get; private set; }
 
@@ -24,6 +42,12 @@ namespace HDWallet.Secp256k1
 
         public Wallet(string privateKey) : this()
         {
+            PrivateKey = PrivateKeyParse(privateKey);
+            PrivateKeyBytes = PrivateKey.ToBytes();
+        }
+
+        private Key PrivateKeyParse(string privateKey)
+        {
             byte[] privKeyPrefix = new byte[] { (128) };
             byte[] prefixedPrivKey = Helper.Concat(privKeyPrefix, Encoders.Hex.DecodeData(privateKey));
 
@@ -32,7 +56,7 @@ namespace HDWallet.Secp256k1
 
             Base58CheckEncoder base58Check = new Base58CheckEncoder();
             string privKeyEncoded = base58Check.EncodeData(suffixedPrivKey);
-            PrivateKey = Key.Parse(privKeyEncoded, Network.Main);
+            return Key.Parse(privKeyEncoded, Network.Main);
         }
 
         public Signature Sign(byte[] message)

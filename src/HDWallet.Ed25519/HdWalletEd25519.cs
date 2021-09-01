@@ -17,7 +17,7 @@ namespace HDWallet.Ed25519
 
             return new TWallet() {
                 Path = path,
-                PrivateKey = derivePath.Key
+                PrivateKeyBytes = derivePath.Key
             };
         }
 
@@ -39,7 +39,7 @@ namespace HDWallet.Ed25519
             var derivePath = bip32.DerivePath(path, this.BIP39Seed);
 
             _coinTypeWallet = new TWallet() {
-                PrivateKey = derivePath.Key
+                PrivateKeyBytes = derivePath.Key
             };
         }
         protected HdWalletEd25519(string seed, CoinPath path) : this(seed, path.ToString()) {}
@@ -51,7 +51,7 @@ namespace HDWallet.Ed25519
             var derivePath = bip32.DerivePath(path, this.BIP39Seed);
 
             _coinTypeWallet = new TWallet() {
-                PrivateKey = derivePath.Key
+                PrivateKeyBytes = derivePath.Key
             };
         }
         protected HdWalletEd25519(string words, string seedPassword, CoinPath path) : this(words, seedPassword, path.ToString()) {}

@@ -8,10 +8,15 @@ namespace HDWallet.Ed25519
 {
     public abstract class Wallet : IWallet
     {
+        public byte[] PublicKey;
+    
+        public uint Index { get; set; }
+
         public string Path {get; set;}
         
         byte[] privateKey;
-        public byte[] PrivateKey {
+        public byte[] PrivateKeyBytes
+        {
             get {
                 return privateKey;
             } set{
@@ -29,7 +34,7 @@ namespace HDWallet.Ed25519
         }
         public byte[] ExpandedPrivateKey {
             get {
-                return GetExpandedPrivateKey(PrivateKey);
+                return GetExpandedPrivateKey(PrivateKeyBytes);
             }
         }
 
@@ -45,19 +50,18 @@ namespace HDWallet.Ed25519
             return buffer.ToArray();
         }
 
-        public byte[] PublicKey;
-        public uint Index;
         public string Address => AddressGenerator.GenerateAddress(PublicKey);
 
         public IAddressGenerator AddressGenerator {get; private set; }
-        
+      
+
         public Wallet(){
             AddressGenerator = GetAddressGenerator();
         }
 
         public Wallet(byte[] privateKey) : this()
         {
-            PrivateKey = privateKey;
+            PrivateKeyBytes = privateKey;
         }
 
         public Wallet(string privateKeyHex) : this(Encoders.Hex.DecodeData( 
@@ -74,7 +78,7 @@ namespace HDWallet.Ed25519
         {
             // if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
 
-            var signature = Signer.Sign(message, this.PrivateKey, this.PublicKey);
+            var signature = Signer.Sign(message, this.PrivateKeyBytes, this.PublicKey);
             var signatureHex = signature.ToArray().ToHexString();
 
             
