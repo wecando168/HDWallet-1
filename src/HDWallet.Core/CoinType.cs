@@ -14,6 +14,7 @@ namespace HDWallet.Core
         Avalanche = 9000,
         FileCoin = 461,
         Solana = 501,
-        Blockstack = 5757
+        Blockstack = 5757,
+        Neo = 888
     }
 }

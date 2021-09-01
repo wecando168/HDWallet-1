@@ -30,7 +30,6 @@ namespace HDWallet.Secp256k1
             }
         }
 
-
         internal IAddressGenerator AddressGenerator { get; private set; }
 
         public Wallet()
