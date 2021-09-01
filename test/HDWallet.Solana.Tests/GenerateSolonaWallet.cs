@@ -51,7 +51,7 @@ namespace HDWallet.Solana.Tests
 
             Console.WriteLine(wallet.Address);
             Console.WriteLine(wallet.PublicKey.ToHexString());
-            Console.WriteLine(wallet.PrivateKey.ToHexString());
+            Console.WriteLine(wallet.PrivateKeyBytes.ToHexString());
             Console.WriteLine(wallet.ExpandedPrivateKey.ToHexString());
             Console.WriteLine($"[{string.Join(", ", wallet.ExpandedPrivateKey)}]");
         }

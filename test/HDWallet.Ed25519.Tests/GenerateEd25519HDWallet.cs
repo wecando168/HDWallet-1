@@ -20,7 +20,7 @@ namespace HDWallet.Ed25519.Tests
             TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(ReferenceSeed);
             var account0 = hdWallet.GetWalletFromPath<SampleWallet>(path);
 
-            Assert.AreEqual(privateKey, account0.PrivateKey.ToHexString());
+            Assert.AreEqual(privateKey, account0.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{account0.PublicKey.ToHexString()}");
         }
 
@@ -38,7 +38,7 @@ namespace HDWallet.Ed25519.Tests
             TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(ReferenceSeed2);
             var account0 = hdWallet.GetWalletFromPath<SampleWallet>(path);
 
-            Assert.AreEqual(privateKey, account0.PrivateKey.ToHexString());
+            Assert.AreEqual(privateKey, account0.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{account0.PublicKey.ToHexString()}");
         }
 
@@ -48,7 +48,7 @@ namespace HDWallet.Ed25519.Tests
             TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(ReferenceSeed2);
             var wallet = hdWallet.GetWalletFromPath<SampleWallet>(path);
 
-            Assert.AreEqual(privateKey, wallet.PrivateKey.ToHexString());
+            Assert.AreEqual(privateKey, wallet.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{wallet.PublicKey.ToHexString()}");
         }
     }

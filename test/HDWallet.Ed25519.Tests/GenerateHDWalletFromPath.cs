@@ -16,7 +16,7 @@ namespace HDWallet.Ed25519.Tests
 
             Assert.AreEqual(expected: expectedPath, actual: masterWallet.Path);
 
-            Assert.AreEqual(privateKey, masterWallet.PrivateKey.ToHexString());
+            Assert.AreEqual(privateKey, masterWallet.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{masterWallet.PublicKey.ToHexString()}");
         }
 
@@ -28,7 +28,7 @@ namespace HDWallet.Ed25519.Tests
 
             Assert.AreEqual(expected: expectedPath, actual: accountWallet.Path);
 
-            Assert.AreEqual(privateKey, accountWallet.PrivateKey.ToHexString());
+            Assert.AreEqual(privateKey, accountWallet.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{accountWallet.PublicKey.ToHexString()}");
         }
     }
