@@ -16,10 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\HDWallet.Cardano\HDWallet.Cardano.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="HDWallet.Ed25519" Version="0.1.0" />
+    <ProjectReference Include="..\..\src\HDWallet.Ed25519\HDWallet.Ed25519.csproj" />
   </ItemGroup>
 
 </Project>
