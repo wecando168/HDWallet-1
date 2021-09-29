@@ -1,8 +1,8 @@
-<Project Sdk="Microsoft.NET.Sdk">
-
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  
   <ItemGroup>
-    <PackageReference Include="HDWallet.Core" Version="0.1.5" />
-    <PackageReference Include="HDWallet.Ed25519" Version="0.1.0" />
+    <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
+    <ProjectReference Include="..\HDWallet.Ed25519\HDWallet.Ed25519.csproj" />
   </ItemGroup>
 
   <PropertyGroup>
@@ -10,7 +10,7 @@
 
     <Title></Title>
     <Description></Description>
-    <Version>0.1.0</Version>
+    <Version>0.1.1</Version>
 
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl> 

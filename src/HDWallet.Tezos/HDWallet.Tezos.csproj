@@ -2,15 +2,34 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+
+    <Title></Title>
+    <Description></Description>
+    <Version>0.1.1</Version>
+
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/farukterzioglu/HDWallet</PackageProjectUrl>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>HDWallet;Tezos;Blockchain;Secp256k1</PackageTags>
+    <PackageId>HDWallet.Tezos</PackageId>
+
+    <Authors>Faruk Terzioglu</Authors>
+    <Company></Company>
+
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Base58Check" Version="0.2.0" />
-    <PackageReference Include="HDWallet.Secp256k1" Version="0.2.2" />
-    <PackageReference Include="Konscious.Security.Cryptography.Blake2" Version="1.0.9" />
     <PackageReference Include="Nethereum.Web3" Version="3.8.0" />
+    <PackageReference Include="Konscious.Security.Cryptography.Blake2" Version="1.0.9" />
     <PackageReference Include="NBitcoin.Secp256k1" Version="1.0.1" />
     <PackageReference Include="NBitcoin" Version="5.0.27" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HDWallet.Secp256k1\HDWallet.Secp256k1.csproj" />
   </ItemGroup>
 
 </Project>
