@@ -5,7 +5,7 @@
 
     <Title>HDWallet.Secp256k1</Title>
     <Description></Description>
-    <Version>1.0.0</Version>
+    <Version>1.1.0</Version>
 
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl> 
