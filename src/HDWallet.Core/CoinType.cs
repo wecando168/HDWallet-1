@@ -15,6 +15,7 @@ namespace HDWallet.Core
         FileCoin = 461,
         Solana = 501,
         Blockstack = 5757,
-        Neo = 888
+        Neo = 888,
+        Terra = 330
     }
 }
