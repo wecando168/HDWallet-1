@@ -58,15 +58,10 @@ namespace HDWallet.Secp256k1.Tests.Signature
             Assert.AreEqual("08bf123eabe77480787d664ca280dc1f20d9205725320658c39c6c143fd5642d", S.ToHexString());
 
             // Compact signature
-            byte[] signatureCompact = key.SignCompact(new uint256(messageBytes), true);
-            if (signatureCompact.Length != 65)
-				throw new ArgumentException(paramName: nameof(signatureCompact), message: "Signature truncated, expected 65");
-
-            var ss = signatureCompact.AsSpan();
-
-            int recid = (ss[0] - 27) & 3;
+            CompactSignature signatureCompact = key.SignCompact(new uint256(messageBytes), true);
+            int recid = signatureCompact.RecoveryId;
             if ( ! (
-                SecpRecoverableECDSASignature.TryCreateFromCompact(ss.Slice(1), recid, out SecpRecoverableECDSASignature sigR) && sigR is SecpRecoverableECDSASignature
+                SecpRecoverableECDSASignature.TryCreateFromCompact(signatureCompact.Signature, recid, out SecpRecoverableECDSASignature sigR) && sigR is SecpRecoverableECDSASignature
                 ) 
             )
 			{
