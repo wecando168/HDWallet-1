@@ -1,3 +1,4 @@
+using System;
 using HDWallet.Core;
 using NBitcoin;
 
@@ -8,9 +9,29 @@ namespace HDWallet.Secp256
         ExtKey _masterKey;
         uint _accountIndex;
 
+        /// <summary>
+        /// Generate for 'Main' network by default. 
+        /// If you want to generate for testnet or regtest, use the overload
+        /// </summary>
+        /// <param name="accountMasterKey"></param>
+        /// <param name="accountIndex">Only for information, isn't being used for derivation</param>
+        [Obsolete("Use 'AccountHDWalletSecpBase(string accountMasterKey, uint accountIndex, Network network)'")]
         public AccountHDWalletSecpBase(string accountMasterKey, uint accountIndex)
         {
-            BitcoinExtKey bitcoinExtKey = new BitcoinExtKey(accountMasterKey);
+            BitcoinExtKey bitcoinExtKey = new BitcoinExtKey(accountMasterKey, Network.Main);
+            _masterKey = bitcoinExtKey.ExtKey;
+            _accountIndex = accountIndex;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="accountMasterKey"></param>
+        /// <param name="accountIndex">Only for information, isn't being used for derivation</param>
+        /// <param name="network"></param>
+        public AccountHDWalletSecpBase(string accountMasterKey, uint accountIndex, Network network)
+        {
+            BitcoinExtKey bitcoinExtKey = new BitcoinExtKey(accountMasterKey, network);
             _masterKey = bitcoinExtKey.ExtKey;
             _accountIndex = accountIndex;
         }
