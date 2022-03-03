@@ -14,7 +14,6 @@
     <PackageReference Include="Konscious.Security.Cryptography.Blake2" Version="1.0.9" />
     <PackageReference Include="Nethereum.HdWallet" Version="3.8.0" />
     <PackageReference Include="Nethereum.Web3" Version="3.8.0" />
-    <PackageReference Include="NBitcoin" Version="5.0.33" />
   </ItemGroup>
 
   <ItemGroup>
