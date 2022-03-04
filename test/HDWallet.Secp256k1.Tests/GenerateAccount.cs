@@ -9,7 +9,7 @@ namespace HDWallet.Secp256k1.Tests
         [Test]
         public void ShouldCreateAccount()
         {
-            IHDWallet<Secp256k1Wallet> bitcoinHDWallet = new Secp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
+            IHDWallet<SampleSecp256k1Wallet> bitcoinHDWallet = new SampleSecp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
 
             var account0 = bitcoinHDWallet.GetAccount(0);
 
@@ -39,7 +39,7 @@ namespace HDWallet.Secp256k1.Tests
         [Test]
         public void ShouldCreateAccountWallet()
         {
-            IHDWallet<Secp256k1Wallet> bitcoinHDWallet = new Secp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
+            IHDWallet<SampleSecp256k1Wallet> bitcoinHDWallet = new SampleSecp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
             var accountWallet = bitcoinHDWallet.GetAccountWallet(0);
             // TODO: Get xpiv and assert in unit test
         }

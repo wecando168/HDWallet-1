@@ -16,7 +16,7 @@ namespace HDWallet.Secp256k1.Tests
         {
             string words = "push wrong tribe amazing again cousin hill belt silent found sketch monitor";
             
-            IHDWallet<Secp256k1Wallet> wallet = new Secp256k1HDWallet(words, seedPassword: string.Empty);
+            IHDWallet<SampleSecp256k1Wallet> wallet = new SampleSecp256k1HDWallet(words, seedPassword: string.Empty);
             var account = wallet.GetMasterWallet();
 
             var privateKeyHex = account.PrivateKey.ToHex();
