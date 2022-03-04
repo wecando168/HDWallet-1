@@ -9,6 +9,6 @@ namespace HDWallet.Bitcoin
         private static readonly HDWallet.Core.CoinPath _path = M.BIP84.Bitcoin;
 
         public BitcoinHDWallet(string seed) : base(seed, _path) {}
-        public BitcoinHDWallet(string words, string seedPassword) : base(words, seedPassword, _path) {}
+        public BitcoinHDWallet(string mnemonic, string passphrase) : base(mnemonic, passphrase, _path) {}
     }
 }

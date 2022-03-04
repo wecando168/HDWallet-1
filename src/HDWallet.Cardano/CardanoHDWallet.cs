@@ -9,7 +9,7 @@ namespace HDWallet.Cardano
         private static readonly HDWallet.Core.CoinPath _path = Purpose.Create(PurposeNumber.CIP1852).CreateCoinPath(CoinType.Cardano);
 
         internal CardanoHDWallet(string seed, HDWallet.Core.CoinPath path) : base(seed, _path) {}
-        public CardanoHDWallet(string words, string seedPassword) : base(words, seedPassword, _path) {}
+        public CardanoHDWallet(string mnemonic, string passphrase) : base(mnemonic, passphrase, _path) {}
 
         /// <summary>
         /// Generates Account from master. Doesn't derive new path by accountIndexInfo

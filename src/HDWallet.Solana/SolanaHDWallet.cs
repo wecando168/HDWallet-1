@@ -9,6 +9,6 @@ namespace HDWallet.Solana
         private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Solana);
 
         public SolanaHdWallet(string seed) : base(seed, _path) { }
-        public SolanaHdWallet(string words, string seedPassword) : base(words, seedPassword, _path) { }
+        public SolanaHdWallet(string mnemonic, string passphrase) : base(mnemonic, passphrase, _path) { }
     }
 }

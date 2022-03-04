@@ -9,7 +9,7 @@ namespace HDWallet.Polkadot
         private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Kusama);
 
         public KusamaHDWallet(string seed) : base(seed, _path) {}
-        public KusamaHDWallet(string words, string seedPassword) : base(words, seedPassword, _path) {}
+        public KusamaHDWallet(string mnemonic, string passphrase) : base(mnemonic, passphrase, _path) {}
     }
 
     public class PolkadotHDWallet : HdWalletEd25519<PolkadotWallet>, IHDWallet<PolkadotWallet>
@@ -17,6 +17,6 @@ namespace HDWallet.Polkadot
         private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Polkadot);
 
         public PolkadotHDWallet(string seed) : base(seed, _path) {}
-        public PolkadotHDWallet(string words, string seedPassword) : base(words, seedPassword, _path) {}
+        public PolkadotHDWallet(string mnemonic, string passphrase) : base(mnemonic, passphrase, _path) {}
     }
 }

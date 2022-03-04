@@ -7,7 +7,7 @@ namespace HDWallet.Neo
     {
         private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Neo);
 
-        public NeoHdWallet(string words, string seedPassword = "") : base(words, seedPassword, _path) { }
+        public NeoHdWallet(string mnemonic, string passphrase = "") : base(mnemonic, passphrase, _path) { }
 
         /// <summary>
         /// Generates Account from master. Doesn't derive new path by accountIndexInfo

@@ -11,7 +11,7 @@ namespace HDWallet.Ethereum
         {
         }
 
-        public EthereumHDWallet(string words, string seedPassword) : base(words, seedPassword, _path)
+        public EthereumHDWallet(string mnemonic, string passphrase) : base(mnemonic, passphrase, _path)
         {
         }
     }
