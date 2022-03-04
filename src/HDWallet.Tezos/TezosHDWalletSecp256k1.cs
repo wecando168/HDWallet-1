@@ -5,7 +5,7 @@ namespace HDWallet.Tezos
 {
     public class TezosHDWalletSecp256k1 : HDWallet<TezosWallet>
     {
-        private static readonly HDWallet.Core.CoinPath _path = Purpose.Create(PurposeNumber.BIP44).Coin(CoinType.Tezos);
+        private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Tezos);
 
         public TezosHDWalletSecp256k1(string words, string seedPassword = "") : base(words, seedPassword, _path) { }
 

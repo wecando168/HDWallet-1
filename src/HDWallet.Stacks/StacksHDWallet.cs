@@ -5,7 +5,7 @@ namespace HDWallet.Stacks
 {
     public class StacksHDWallet : HDWallet<StacksWallet>
     {
-        private static readonly HDWallet.Core.CoinPath _path = Purpose.Create(PurposeNumber.BIP44).Coin(CoinType.Blockstack);
+        private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Blockstack);
 
         public StacksHDWallet(string words, string seedPassword = "") : base(words, seedPassword, _path) {}
 

@@ -5,7 +5,7 @@ namespace HDWallet.Terra
 {
     public class TerraHDWallet : HDWallet<TerraWallet>
     {
-        private static readonly HDWallet.Core.CoinPath _path = Purpose.Create(PurposeNumber.BIP44).Coin(CoinType.Terra);
+        private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Terra);
 
         public TerraHDWallet(string words, string seedPassword = "") : base(words, seedPassword, _path) {}
 

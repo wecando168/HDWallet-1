@@ -5,7 +5,7 @@ namespace HDWallet.Neo
 {
     public class NeoHdWallet : HDWallet<NeoWallet>
     {
-        private static readonly HDWallet.Core.CoinPath _path = Purpose.Create(PurposeNumber.BIP44).Coin(CoinType.Neo);
+        private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Neo);
 
         public NeoHdWallet(string words, string seedPassword = "") : base(words, seedPassword, _path) { }
 
