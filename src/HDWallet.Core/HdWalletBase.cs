@@ -4,6 +4,10 @@ using Nethereum.Hex.HexConvertors.Extensions;
 
 namespace HDWallet.Core
 {
+    /// <summary>
+    /// Base class for different curves' hd wallets
+    /// Creates & keeps BIP39 seed either from a seed or from mnemonic & passpharese
+    /// </summary>
     public abstract class HdWalletBase
     {
         public string BIP39Seed { get; private set; }

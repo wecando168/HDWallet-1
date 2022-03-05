@@ -1,8 +1,13 @@
+using System;
 using HDWallet.Core;
 using NBitcoin;
 
 namespace HDWallet.Secp256
 {
+    /// <summary>
+    /// Base class for Secp based HD wallets
+    /// </summary>
+    /// <typeparam name="TWallet"></typeparam>
     public abstract class HDWalletSecpBase<TWallet> : HdWalletBase, IHDWallet<TWallet> where TWallet : IWallet, new()
     {
         ExtKey _masterKey;
@@ -65,7 +70,7 @@ namespace HDWallet.Secp256
         }
 
         /// <summary>
-        /// Returns the account to access wallets at m/purpose'/coin_type'/{accountIndex}'/[0/1]
+        /// Returns the [accountIndex]th account to access wallets at m/purpose'/coin_type'/{accountIndex}'/[0/1]
         /// </summary>
         /// <param name="accountIndex"></param>
         /// <returns></returns>
@@ -81,14 +86,38 @@ namespace HDWallet.Secp256
         }
 
         /// <summary>
-        /// Generates Account from master. Doesn't derive new path by accountIndexInfo
+        /// Generates an account from master. Doesn't derive new path by accountIndexInfo
         /// </summary>
         /// <param name="accountMasterKey">Used to generate wallet</param>
         /// <param name="accountIndexInfo">Used only to store information</param>
         /// <returns></returns>
+        [Obsolete("'accountIndexInfo' is not being used, used the overloads.")]
         public static IAccount<TWallet> GetAccountFromMasterKey(string accountMasterKey, uint accountIndexInfo)
         {
             IAccountHDWallet<TWallet> accountHDWallet = new AccountHDWalletSecpBase<TWallet>(accountMasterKey, accountIndexInfo);
+            return accountHDWallet.Account;
+        }
+
+        /// <summary>
+        /// Generates an account from master for Mainnet.
+        /// </summary>
+        /// <param name="accountMasterKey">Used to generate wallet</param>
+        /// <returns></returns>
+        public static IAccount<TWallet> GetAccountFromMasterKey(string accountMasterKey)
+        {
+            IAccountHDWallet<TWallet> accountHDWallet = new AccountHDWalletSecpBase<TWallet>(accountMasterKey, Network.Main);
+            return accountHDWallet.Account;
+        }
+
+        /// <summary>
+        /// Generates an account from master for network: [network].
+        /// </summary>
+        /// <param name="accountMasterKey">Used to generate wallet</param>
+        /// <param name="network"></param>
+        /// <returns></returns>
+        public static IAccount<TWallet> GetAccountFromMasterKey(string accountMasterKey, Network network)
+        {
+            IAccountHDWallet<TWallet> accountHDWallet = new AccountHDWalletSecpBase<TWallet>(accountMasterKey, network);
             return accountHDWallet.Account;
         }
     }

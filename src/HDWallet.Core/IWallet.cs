@@ -6,8 +6,8 @@ namespace HDWallet.Core
 
         Signature Sign(byte[] message);
 
-        public byte[] PrivateKeyBytes { get; set; }
+        byte[] PrivateKeyBytes { get; set; }
 
-        public uint Index { get; set; }
+        uint Index { get; set; }
     }
 }
