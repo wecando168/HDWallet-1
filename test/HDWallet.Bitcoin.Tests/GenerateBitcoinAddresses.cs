@@ -29,7 +29,7 @@ namespace HDWallet.Bitcoin.Tests
         public void ShouldGenerateExtendedPrivateKey()
         {
             var privateKey = "xprv9yMdbZB9vP8EPKaUZveRTJUuipCJEu4nJG5Dqih2Gi8LrunoNAGXfMeHBginxcpCtD3M6NJb64rfncoB76YeVhWshoZSb1gBdCrMRWLzxFs";
-            var hdWallet = BitcoinHDWallet.GetAccountFromMasterKey(privateKey, 0);
+            var hdWallet = BitcoinHDWallet.GetAccountFromMasterKey(privateKey);
             var walletDeposit = hdWallet.GetExternalWallet(0);
 
             var publicKey = walletDeposit.PublicKey;
@@ -56,7 +56,7 @@ namespace HDWallet.Bitcoin.Tests
         public void ShouldGenerateChangeAddress()
         {
             var privateKey = "xprv9yMdbZB9vP8EPKaUZveRTJUuipCJEu4nJG5Dqih2Gi8LrunoNAGXfMeHBginxcpCtD3M6NJb64rfncoB76YeVhWshoZSb1gBdCrMRWLzxFs";
-            var hdWallet = BitcoinHDWallet.GetAccountFromMasterKey(privateKey, 0);
+            var hdWallet = BitcoinHDWallet.GetAccountFromMasterKey(privateKey);
             var walletDeposit = hdWallet.GetInternalWallet(0);
 
             var publicKey = walletDeposit.PublicKey;
@@ -70,7 +70,7 @@ namespace HDWallet.Bitcoin.Tests
         public void ShouldGenerateTestnetAddress()
         {
             var privateKey = "xprv9yMdbZB9vP8EPKaUZveRTJUuipCJEu4nJG5Dqih2Gi8LrunoNAGXfMeHBginxcpCtD3M6NJb64rfncoB76YeVhWshoZSb1gBdCrMRWLzxFs";
-            var hdWallet = BitcoinHDWallet.GetAccountFromMasterKey(privateKey, 0);
+            var hdWallet = BitcoinHDWallet.GetAccountFromMasterKey(privateKey);
             var walletDeposit = hdWallet.GetInternalWallet(0);
 
             var publicKey = walletDeposit.PublicKey;

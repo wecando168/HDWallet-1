@@ -42,7 +42,7 @@ namespace HDWallet.Neo.Tests
         public void ShouldCreateAddressFromMasterKey()
         {
             var accountExtendedPrivateKey = "xprv9ygCPYxKvwkSoQvKtcsfc4AYx7YBMWqkSZ8u7yAD1Ydz9muWdjNgZN6vdg1QBPZ9rYZdKbhPnmseYmHbJCSqkuxPJUzPHc5i6PQto4gvz6M";
-            IAccount<NeoWallet> accountHDWallet = NeoHdWallet.GetAccountFromMasterKey(accountExtendedPrivateKey, 0);
+            IAccount<NeoWallet> accountHDWallet = NeoHdWallet.GetAccountFromMasterKey(accountExtendedPrivateKey);
             var depositWallet0 = accountHDWallet.GetExternalWallet(0);
             Assert.AreEqual("NeWuyvtyLL2WUSZpW9zHrAe6AwUCPxmS1R", depositWallet0.Address);
         }

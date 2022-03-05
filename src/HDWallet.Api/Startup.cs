@@ -151,8 +151,8 @@ namespace HDWallet.Api
         {
             if(string.IsNullOrWhiteSpace(settings.AccountHDKey) == false)
             {
-                IAccountHDWallet<TWallet> accountHDWallet = new AccountHDWallet<TWallet>(settings.AccountHDKey, settings.AccountNumber);
-                services.AddSingleton<IAccountHDWallet<TWallet>>(accountHDWallet);
+                IAccount<TWallet> accountHDWallet = new Secp256k1.Account<TWallet>(settings.AccountHDKey, NBitcoin.Network.Main);
+                services.AddSingleton<IAccount<TWallet>>(accountHDWallet);
             }
             
             if(string.IsNullOrWhiteSpace(settings.Mnemonic) == false) 

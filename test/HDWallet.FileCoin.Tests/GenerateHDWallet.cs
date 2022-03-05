@@ -15,7 +15,7 @@ namespace HDWallet.FileCoin.Tests
 
             // Account Extended Private Key for m/44'/461'/0';
             var accountExtendedPrivateKey = "xprv9yELkvBV1wjRSMoTeGuhQaxwLUwdoRskUQjnHP4cy83mkfkyyrs9P9ax3mRg7P1M7XG5heBy2M9e5huLEmQnnub24EMmTDUoyt3pgW8SvcK";
-            IAccount<FileCoinWallet> accountHDWallet = FileCoinHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey, 0);
+            IAccount<FileCoinWallet> accountHDWallet = FileCoinHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey);
             
             // m/44'/461'/0'/0/0
             var depositWallet0 = accountHDWallet.GetExternalWallet(0);
@@ -39,7 +39,7 @@ namespace HDWallet.FileCoin.Tests
         public void ShouldCreateAddressFromMasterKey()
         {
             var accountExtendedPrivateKey = "xprv9yELkvBV1wjRSMoTeGuhQaxwLUwdoRskUQjnHP4cy83mkfkyyrs9P9ax3mRg7P1M7XG5heBy2M9e5huLEmQnnub24EMmTDUoyt3pgW8SvcK";
-            IAccount<FileCoinWallet> accountHDWallet = FileCoinHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey, 0);
+            IAccount<FileCoinWallet> accountHDWallet = FileCoinHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey);
             var depositWallet0 = accountHDWallet.GetExternalWallet(0);
             Assert.AreEqual("f1gdrlcunry4lagktmexhudtfxmndtlm7wijcu35a", depositWallet0.Address);
         }

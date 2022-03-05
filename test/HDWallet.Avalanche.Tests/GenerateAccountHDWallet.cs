@@ -16,7 +16,7 @@ namespace HDWallet.Avalanche.Tests
 
             // Account Extended Private Key for m/44'/9000'/0';
             var accountExtendedPrivateKey = "xprv9ygCPYxKvwkSoQvKtcsfc4AYx7YBMWqkSZ8u7yAD1Ydz9muWdjNgZN6vdg1QBPZ9rYZdKbhPnmseYmHbJCSqkuxPJUzPHc5i6PQto4gvz6M";
-            IAccount<AvalancheWallet> accountHDWallet = AvalancheHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey, 0);
+            IAccount<AvalancheWallet> accountHDWallet = AvalancheHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey);
             
             // m/44'/9000'/0'/0/0
             var depositWallet0 = accountHDWallet.GetExternalWallet(0);
@@ -46,7 +46,7 @@ namespace HDWallet.Avalanche.Tests
         public void ShouldCreateAddressFromMasterKey()
         {
             var accountExtendedPrivateKey = "xprv9ygCPYxKvwkSoQvKtcsfc4AYx7YBMWqkSZ8u7yAD1Ydz9muWdjNgZN6vdg1QBPZ9rYZdKbhPnmseYmHbJCSqkuxPJUzPHc5i6PQto4gvz6M";
-            IAccount<AvalancheWallet> accountHDWallet = AvalancheHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey, 0);
+            IAccount<AvalancheWallet> accountHDWallet = AvalancheHDWallet.GetAccountFromMasterKey(accountExtendedPrivateKey);
             var depositWallet0 = accountHDWallet.GetExternalWallet(0);
             Assert.AreEqual("X-avax1as0rhx4ejjfm3vzmhxycs58v4lu4u9h7amfqmx", depositWallet0.Address);
         }

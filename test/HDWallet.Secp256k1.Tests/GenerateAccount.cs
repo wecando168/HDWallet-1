@@ -1,5 +1,6 @@
 using HDWallet.Core;
 using HDWallet.Secp256k1.Sample;
+using NBitcoin;
 using NUnit.Framework;
 
 namespace HDWallet.Secp256k1.Tests
@@ -45,6 +46,25 @@ namespace HDWallet.Secp256k1.Tests
             Assert.AreEqual("0380450c855822c697fcee88347ff7281f70cc3de1d1f8cc5be9fe07db18019187", bitcoinHDWallet.GetAccountWallet(1).PublicKey.ToHex());
             Assert.AreEqual("032ee82769d33bb77eb6b0099f704bad94d35da5484e95410a7ba9893fa223128e", bitcoinHDWallet.GetAccountWallet(2).PublicKey.ToHex());
             Assert.AreEqual("03ad412ea25bd8192b0d738dbfcd8b43242f17cf5a4ffeb7b8e9a50072b99b4a7a", bitcoinHDWallet.GetAccountWallet(19).PublicKey.ToHex());
+        }
+
+        [Test]
+        public void ShouldCreateAccountFromMasterKey()
+        {
+            // Account Extended Private Key for m/44'/0'/0' of mnemonic;
+            // conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch
+            // Checked from https://iancoleman.io/bip39
+            var accountExtendedPrivateKey = "xprv9xyvwx1jBEBKwjZtXYogBwDyfXTyTa3Af6urV2dU843CyBxLu9J5GLQL4vMWvaW4q3skqAtarUvdGmBoWQZnU2RBLnmJdCM4FnbMa72xWNy";
+
+            IAccount<SampleSecp256k1Wallet> accountHDWallet = new Account<SampleSecp256k1Wallet>(accountExtendedPrivateKey, Network.Main);
+            
+            // m/44'/0'/0'/0/0
+            var depositWallet0 = accountHDWallet.GetExternalWallet(0);
+            Assert.AreEqual("0374c393e8f757fa4b6af5aba4545fd984eae28ab84bda09df93d32562123b7a1c", depositWallet0.PublicKey.ToHex());
+
+            // m/44'/0'/0'/0/1
+            var depositWallet1 = accountHDWallet.GetExternalWallet(1);
+            Assert.AreEqual("025166e4e70b4ae6fd0deab416ab1c3704f2aa5dbf451be7639ca48fe6d273773c", depositWallet1.PublicKey.ToHex());
         }
     }
 }

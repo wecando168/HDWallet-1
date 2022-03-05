@@ -1,9 +1,30 @@
+using System;
 using HDWallet.Core;
 using HDWallet.Secp256r1.Sample;
+using Neo;
+using Neo.SmartContract;
+using Neo.Wallets;
 using NUnit.Framework;
 
 namespace HDWallet.Secp256r1.Tests
 {
+    public class NeoWallet : Wallet, IWallet
+    {
+        public NeoWallet() { }
+
+        public NeoWallet(string privateKey) : base(privateKey) { }
+
+        protected override IAddressGenerator GetAddressGenerator()
+        {
+            return new NullAddressGenerator();
+        }
+
+        public string GetAddress()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     public class GenerateWallet
     {
         [SetUp]
@@ -15,15 +36,16 @@ namespace HDWallet.Secp256r1.Tests
         [Test]
         public void ShouldGenerateWalletFromPrivateKey()
         {
-            //IHDWallet<Secp256r1Wallet> tronHDWallet = new Secp256r1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
-            //var account0 = tronHDWallet.GetAccount(0);
-            //Secp256r1Wallet wallet0 = account0.GetExternalWallet(0);
+             byte[] privateKey = { 0x01,0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01};
+            var wallet = new NeoWallet{
+                PrivateKeyBytes = privateKey
+            };
+            var pubKeyStr = wallet.PublicKey.ToString();
 
-            //Assert.AreEqual("cdce32b32436ff20c2c32ee55cd245a82fff4c2dc944da855a9e0f00c5d889e4", wallet0.PrivateKeyBytes.ToHexString());
+             KeyPair keyPair = new KeyPair(privateKey);
+             var pubKey = keyPair.PublicKey.ToString();
 
-            //var tronWallet = new Secp256r1Wallet("cdce32b32436ff20c2c32ee55cd245a82fff4c2dc944da855a9e0f00c5d889e4");
-            //Assert.AreEqual(wallet0.PrivateKeyBytes.ToHexString(), tronWallet.PrivateKeyBytes.ToHexString());
-            //Assert.AreEqual(wallet0.PublicKey, tronWallet.PublicKey);
+             Assert.AreEqual(pubKeyStr, pubKey);
         }
     }
 }
