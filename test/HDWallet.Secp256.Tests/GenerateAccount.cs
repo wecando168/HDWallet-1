@@ -65,5 +65,45 @@ namespace HDWallet.Secp256.Tests
             var changeWallet11 = account1.GetInternalWallet(1);
             Assert.AreEqual("KwjjWExn8j1gZgCN9MCu5yfzK2T5gsrKfQ6JCSManpywLxY5Wkbz", changeWallet11.PrivateKey.GetWif(network: Network.Main).ToString());
         }
+
+        [Test]
+        public void ShouldCreateAccountFromMasterKey()
+        {
+            // Test vector created at https://iancoleman.io/bip39/  (BIP44 -> m/44'/0'/0')
+            // conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch
+
+            // m/44'/0'/0'
+            var account0 = SampleSecp256HDWallet.GetAccountFromMasterKey("xprv9xyvwx1jBEBKwjZtXYogBwDyfXTyTa3Af6urV2dU843CyBxLu9J5GLQL4vMWvaW4q3skqAtarUvdGmBoWQZnU2RBLnmJdCM4FnbMa72xWNy");
+
+            // m/44'/0'/0'/0/0
+            var depositWallet0 = account0.GetExternalWallet(0);
+            Assert.AreEqual("L47mbshDe8n14kxQFoTavV8fQgRAWtthcS1ZBTd22VDJj8kriU2z", depositWallet0.PrivateKey.GetWif(network: Network.Main).ToString());
+
+            // m/44'/0'/0'/0/1
+            var depositWallet1 = account0.GetExternalWallet(1);
+            Assert.AreEqual("L5KiCVyAMd5fRFtkaHXx1dxaX8jHHYzepzy5eUe8jUA23PwLnKKs", depositWallet1.PrivateKey.GetWif(network: Network.Main).ToString());
+
+            // m/44'/0'/0'/1/0
+            var changeWallet1 = account0.GetInternalWallet(0);
+            Assert.AreEqual("L3a3LT9BARQoCsJo1Xdd2EqPfj3b79RVCd8UoonNY8V5UvVV2CjQ", changeWallet1.PrivateKey.GetWif(network: Network.Main).ToString());
+
+
+            // m/44'/0'/1'
+            var account1 = SampleSecp256HDWallet.GetAccountFromMasterKey("xprv9xyvwx1jBEBKzzkKDDb2JrAKYhFfDeyKcHFxdkrdEBh4donr7VqmAV2WWk7mFRjRgBAap4akcdejnt22dK17eEgrFzpgw5TFGcGbPpT1vJu");
+
+            // m/44'/0'/1'/0/0
+            var depositWallet10 = account1.GetExternalWallet(0);
+            Assert.AreEqual("L1NNWjzAfR9AH3KJNJbemvgXXAbLBY78tWoAryN2jUXyFgDuvhr5", depositWallet10.PrivateKey.GetWif(network: Network.Main).ToString());
+            // m/44'/0'/1'/0/1
+            var depositWallet11 = account1.GetExternalWallet(1);
+            Assert.AreEqual("Kz8mH5hRc2V5nCs6aZeYCgeo97qHmkVWV8zUvjJ1vz917jG8bULD", depositWallet11.PrivateKey.GetWif(network: Network.Main).ToString());
+
+            // m/44'/0'/1'/1/0
+            var changeWallet10 = account1.GetInternalWallet(0);
+            Assert.AreEqual("KzW2yBn7orD6LnKhPJQoeniU6Xnak6pEjHFXMVmeNpXhso1YcWZa", changeWallet10.PrivateKey.GetWif(network: Network.Main).ToString());
+            // m/44'/0'/1'/1/1
+            var changeWallet11 = account1.GetInternalWallet(1);
+            Assert.AreEqual("KwjjWExn8j1gZgCN9MCu5yfzK2T5gsrKfQ6JCSManpywLxY5Wkbz", changeWallet11.PrivateKey.GetWif(network: Network.Main).ToString());
+        }
     }
 }
