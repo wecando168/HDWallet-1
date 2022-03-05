@@ -2,11 +2,11 @@ using HDWallet.Core;
 
 namespace HDWallet.Secp256k1.Sample
 {
-    public class Secp256k1Wallet : Wallet, IWallet
+    public class SampleSecp256k1Wallet : Wallet, IWallet
     {
-        public Secp256k1Wallet(){}
+        public SampleSecp256k1Wallet(){}
         
-        public Secp256k1Wallet(string privateKey) : base(privateKey) {}
+        public SampleSecp256k1Wallet(string privateKey) : base(privateKey) {}
 
         protected override IAddressGenerator GetAddressGenerator()
         {

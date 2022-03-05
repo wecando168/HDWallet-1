@@ -9,7 +9,7 @@ namespace HDWallet.Ed25519
         protected BIP32 bip32 = new BIP32();
 
         protected HdWalletEd25519Base(string seed) : base(seed){}
-        protected HdWalletEd25519Base(string words, string seedPassword) : base(words, seedPassword){}
+        protected HdWalletEd25519Base(string mnemonic, string passphrase) : base(mnemonic, passphrase){}
 
         public TWallet GetWalletFromPath<TWallet>(string path) where TWallet : Wallet, new()
         {
@@ -44,7 +44,7 @@ namespace HDWallet.Ed25519
         }
         protected HdWalletEd25519(string seed, CoinPath path) : this(seed, path.ToString()) {}
 
-        protected HdWalletEd25519(string words, string seedPassword, string path) : base(words, seedPassword)
+        protected HdWalletEd25519(string mnemonic, string passphrase, string path) : base(mnemonic, passphrase)
         {
             _path = path;
 
@@ -54,7 +54,7 @@ namespace HDWallet.Ed25519
                 PrivateKeyBytes = derivePath.Key
             };
         }
-        protected HdWalletEd25519(string words, string seedPassword, CoinPath path) : this(words, seedPassword, path.ToString()) {}
+        protected HdWalletEd25519(string mnemonic, string passphrase, CoinPath path) : this(mnemonic, passphrase, path.ToString()) {}
 
         /// <summary>
         /// Returns wallet for m/[PURPOSE]'/[COINTYPE]' for constructor parameter 'path' (CoinPath)

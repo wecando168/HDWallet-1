@@ -7,7 +7,6 @@ namespace HDWallet.Secp256
     public class AccountHDWalletSecpBase<TWallet> : IAccountHDWallet<TWallet> where TWallet : IWallet, new()
     {
         ExtKey _masterKey;
-        uint _accountIndex;
 
         /// <summary>
         /// Generate for 'Main' network by default. 
@@ -20,20 +19,17 @@ namespace HDWallet.Secp256
         {
             BitcoinExtKey bitcoinExtKey = new BitcoinExtKey(accountMasterKey, Network.Main);
             _masterKey = bitcoinExtKey.ExtKey;
-            _accountIndex = accountIndex;
         }
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="accountMasterKey"></param>
-        /// <param name="accountIndex">Only for information, isn't being used for derivation</param>
         /// <param name="network"></param>
-        public AccountHDWalletSecpBase(string accountMasterKey, uint accountIndex, Network network)
+        public AccountHDWalletSecpBase(string accountMasterKey, Network network)
         {
             BitcoinExtKey bitcoinExtKey = new BitcoinExtKey(accountMasterKey, network);
             _masterKey = bitcoinExtKey.ExtKey;
-            _accountIndex = accountIndex;
         }
 
         IAccount<TWallet> IAccountHDWallet<TWallet>.Account => GetAccount();
@@ -46,7 +42,7 @@ namespace HDWallet.Secp256
             var internalKeyPath = new KeyPath("1");
             var internalMasterKey = _masterKey.Derive(internalKeyPath);
 
-            return new AccountSecpBase<TWallet>(_accountIndex, externalChain: externalMasterKey, internalChain: internalMasterKey);
+            return new AccountSecpBase<TWallet>(externalChain: externalMasterKey, internalChain: internalMasterKey);
         }
     }
 }

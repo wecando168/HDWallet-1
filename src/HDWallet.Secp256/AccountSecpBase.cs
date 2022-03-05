@@ -5,16 +5,14 @@ namespace HDWallet.Secp256
 {
     public class AccountSecpBase<TWallet> : IAccount<TWallet> where TWallet : IWallet, new()
     {
-        public uint AccountIndex { get; set; }
         private ExtKey ExternalChain { get; set; }
         private ExtKey InternalChain { get; set; }
 
 
-        public AccountSecpBase(uint accountIndex, ExtKey externalChain, ExtKey internalChain)
+        public AccountSecpBase(ExtKey externalChain, ExtKey internalChain)
         {
             ExternalChain = externalChain;
             InternalChain = internalChain;
-            AccountIndex = accountIndex;
         }
 
         private TWallet GetWallet(uint addressIndex, bool isInternal)

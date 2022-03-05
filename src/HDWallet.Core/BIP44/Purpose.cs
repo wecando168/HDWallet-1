@@ -1,7 +1,8 @@
 namespace HDWallet.Core
 {
-    public class Purpose
-    {
+    // https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#purpose
+    public partial class Purpose
+    {   
         PurposeNumber _purposeNumber;
         Purpose(PurposeNumber purposeNumber)
         {
@@ -13,7 +14,7 @@ namespace HDWallet.Core
             return new Purpose(purposeNumber);
         }
 
-        public CoinPath Coin(CoinType coinType)
+        public CoinPath CreateCoinPath(CoinType coinType)
         {
             return new CoinPath(_purposeNumber, coinType);
         }

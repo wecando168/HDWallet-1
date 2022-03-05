@@ -1,5 +1,10 @@
 namespace HDWallet.Core
 {
+    /// <summary>
+    /// https://github.com/bitcoin/bips/blob/master/bip-0044.mediawiki#coin-type
+    /// SLIP-0044 : Registered coin types for BIP-0044
+    /// https://github.com/satoshilabs/slips/blob/master/slip-0044.md
+    /// </summary>
     public enum CoinType : uint 
     {
         Bitcoin = 0,

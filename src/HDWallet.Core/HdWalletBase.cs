@@ -4,6 +4,10 @@ using Nethereum.Hex.HexConvertors.Extensions;
 
 namespace HDWallet.Core
 {
+    /// <summary>
+    /// Base class for different curves' hd wallets
+    /// Creates & keeps BIP39 seed either from a seed or from mnemonic & passpharese
+    /// </summary>
     public abstract class HdWalletBase
     {
         public string BIP39Seed { get; private set; }
@@ -15,12 +19,12 @@ namespace HDWallet.Core
             BIP39Seed = seed;
         }
 
-        public HdWalletBase(string words, string seedPassword)
+        public HdWalletBase(string mnemonic, string passphrase)
         {
-            if(string.IsNullOrEmpty(words)) throw new NullReferenceException(nameof(words));
+            if(string.IsNullOrEmpty(mnemonic)) throw new NullReferenceException(nameof(mnemonic));
 
-            var mneumonic = new Mnemonic(words);
-            BIP39Seed = mneumonic.DeriveSeed(seedPassword).ToHex();
+            var mneumonic = new Mnemonic(mnemonic);
+            BIP39Seed = mneumonic.DeriveSeed(passphrase).ToHex();
         }
     }
 }

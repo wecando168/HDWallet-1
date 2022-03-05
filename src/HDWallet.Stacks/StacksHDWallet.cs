@@ -5,9 +5,9 @@ namespace HDWallet.Stacks
 {
     public class StacksHDWallet : HDWallet<StacksWallet>
     {
-        private static readonly HDWallet.Core.CoinPath _path = Purpose.Create(PurposeNumber.BIP44).Coin(CoinType.Blockstack);
+        private static readonly HDWallet.Core.CoinPath _path = M.BIP44.CreateCoinPath(CoinType.Blockstack);
 
-        public StacksHDWallet(string words, string seedPassword = "") : base(words, seedPassword, _path) {}
+        public StacksHDWallet(string mnemonic, string passphrase = "") : base(mnemonic, passphrase, _path) {}
 
         /// <summary>
         /// Generates Account from master. Doesn't derive new path by accountIndexInfo

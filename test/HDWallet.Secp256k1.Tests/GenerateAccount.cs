@@ -9,7 +9,7 @@ namespace HDWallet.Secp256k1.Tests
         [Test]
         public void ShouldCreateAccount()
         {
-            IHDWallet<Secp256k1Wallet> bitcoinHDWallet = new Secp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
+            IHDWallet<SampleSecp256k1Wallet> bitcoinHDWallet = new SampleSecp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
 
             var account0 = bitcoinHDWallet.GetAccount(0);
 
@@ -39,9 +39,12 @@ namespace HDWallet.Secp256k1.Tests
         [Test]
         public void ShouldCreateAccountWallet()
         {
-            IHDWallet<Secp256k1Wallet> bitcoinHDWallet = new Secp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
-            var accountWallet = bitcoinHDWallet.GetAccountWallet(0);
-            // TODO: Get xpiv and assert in unit test
+            // Test vector created at https://iancoleman.io/bip39/  (BIP32 -> m/44'/0' -> 'Use hardened addresses' )
+            IHDWallet<SampleSecp256k1Wallet> bitcoinHDWallet = new SampleSecp256k1HDWallet("conduct stadium ask orange vast impose depend assume income sail chunk tomorrow life grape dutch", "");
+            Assert.AreEqual("02d8220f7a1528c1ff3684249b2c80fd3dcadf10cad466b05f66ec52a851ab6067", bitcoinHDWallet.GetAccountWallet(0).PublicKey.ToHex());
+            Assert.AreEqual("0380450c855822c697fcee88347ff7281f70cc3de1d1f8cc5be9fe07db18019187", bitcoinHDWallet.GetAccountWallet(1).PublicKey.ToHex());
+            Assert.AreEqual("032ee82769d33bb77eb6b0099f704bad94d35da5484e95410a7ba9893fa223128e", bitcoinHDWallet.GetAccountWallet(2).PublicKey.ToHex());
+            Assert.AreEqual("03ad412ea25bd8192b0d738dbfcd8b43242f17cf5a4ffeb7b8e9a50072b99b4a7a", bitcoinHDWallet.GetAccountWallet(19).PublicKey.ToHex());
         }
     }
 }
