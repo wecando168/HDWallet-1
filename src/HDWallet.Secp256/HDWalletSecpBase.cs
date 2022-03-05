@@ -76,13 +76,10 @@ namespace HDWallet.Secp256
         /// <returns></returns>
         IAccount<TWallet> IHDWallet<TWallet>.GetAccount(uint accountIndex)
         {
-            var externalKeyPath = new KeyPath($"{accountIndex}'/0");
-            var externalMasterKey = _masterKey.Derive(externalKeyPath);
+            var externalKeyPath = new KeyPath($"{accountIndex}'");
+            var masterKey = _masterKey.Derive(externalKeyPath);
 
-            var internalKeyPath = new KeyPath($"{accountIndex}'/1");
-            var internalMasterKey = _masterKey.Derive(internalKeyPath);
-
-            return new AccountSecpBase<TWallet>(externalChain: externalMasterKey, internalChain: internalMasterKey);
+            return new AccountSecpBase<TWallet>(masterKey);
         }
 
         /// <summary>
@@ -94,8 +91,8 @@ namespace HDWallet.Secp256
         [Obsolete("'accountIndexInfo' is not being used, used the overloads.")]
         public static IAccount<TWallet> GetAccountFromMasterKey(string accountMasterKey, uint accountIndexInfo)
         {
-            IAccountHDWallet<TWallet> accountHDWallet = new AccountHDWalletSecpBase<TWallet>(accountMasterKey, accountIndexInfo);
-            return accountHDWallet.Account;
+            IAccount<TWallet> accountHDWallet = new AccountSecpBase<TWallet>(accountMasterKey, accountIndexInfo);
+            return accountHDWallet;
         }
 
         /// <summary>
@@ -105,8 +102,8 @@ namespace HDWallet.Secp256
         /// <returns></returns>
         public static IAccount<TWallet> GetAccountFromMasterKey(string accountMasterKey)
         {
-            IAccountHDWallet<TWallet> accountHDWallet = new AccountHDWalletSecpBase<TWallet>(accountMasterKey, Network.Main);
-            return accountHDWallet.Account;
+            IAccount<TWallet> accountHDWallet = new AccountSecpBase<TWallet>(accountMasterKey, Network.Main);
+            return accountHDWallet;
         }
 
         /// <summary>
@@ -117,8 +114,8 @@ namespace HDWallet.Secp256
         /// <returns></returns>
         public static IAccount<TWallet> GetAccountFromMasterKey(string accountMasterKey, Network network)
         {
-            IAccountHDWallet<TWallet> accountHDWallet = new AccountHDWalletSecpBase<TWallet>(accountMasterKey, network);
-            return accountHDWallet.Account;
+            IAccount<TWallet> accountHDWallet = new AccountSecpBase<TWallet>(accountMasterKey, network);
+            return accountHDWallet;
         }
     }
 }

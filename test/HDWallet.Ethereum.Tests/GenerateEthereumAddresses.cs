@@ -41,7 +41,7 @@ namespace HDWallet.Ethereum.Tests
         public void ShouldGenerateExtendedPrivateKey()
         {
             var privateKey = "xprv9y4J1KoATgJXvDA4qjyZKnfHFR1SEWjYS8qufHbALT9tNmjcZ8LKrmYgqgdgAijM35kWT9KGccPChj1qvWsE94XgJQRKk6rykmgQVfsjDh4";
-            var hdWallet = EthereumHDWallet.GetAccountFromMasterKey(privateKey, 0);
+            var hdWallet = EthereumHDWallet.GetAccountFromMasterKey(privateKey);
             var walletDeposit = hdWallet.GetExternalWallet(0);
 
             var publicKey = walletDeposit.PublicKey;

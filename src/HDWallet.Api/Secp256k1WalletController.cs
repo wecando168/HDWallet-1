@@ -10,14 +10,14 @@ namespace HDWallet.Api
     public class Secp256k1WalletController<TWallet> : ControllerBase where TWallet: Wallet, new()
     {
         private readonly ILogger<Secp256k1WalletController<TWallet>> _logger;
-        private readonly IAccountHDWallet<TWallet> _accountHDWallet;
+        private readonly IAccount<TWallet> _accountHDWallet;
 
         public Secp256k1WalletController(
             ILogger<Secp256k1WalletController<TWallet>> logger,
             IServiceProvider prov)
         {
             _logger = logger;
-            _accountHDWallet = prov.GetService<IAccountHDWallet<TWallet>>();
+            _accountHDWallet = prov.GetService<IAccount<TWallet>>();
         }
 
         protected ActionResult<string> DepositWallet(uint index)
@@ -27,7 +27,7 @@ namespace HDWallet.Api
                 return BadRequest("Wallet wasn't initialized with master key! Use hd wallet.");
             }
 
-            var wallet = _accountHDWallet.Account.GetExternalWallet(index);
+            var wallet = _accountHDWallet.GetExternalWallet(index);
             return wallet.Address;
         }
 
@@ -38,7 +38,7 @@ namespace HDWallet.Api
                 return BadRequest("Wallet wasn't initialized with master key! Use hd wallet.");
             }
 
-            var wallet = _accountHDWallet.Account.GetInternalWallet(index);
+            var wallet = _accountHDWallet.GetInternalWallet(index);
             return wallet.Address;
         }
     }

@@ -10,7 +10,9 @@ namespace HDWallet.Secp256r1
     /// <typeparam name="TWallet"></typeparam>
     public class Account<TWallet> : AccountSecpBase<TWallet>, IAccount<TWallet> where TWallet : Wallet, new()
     {
-        public Account(ExtKey externalChain, ExtKey internalChain) : base(externalChain, internalChain)
+        public Account(string accountMasterKey, Network network): base(accountMasterKey, network) {}
+
+        public Account(ExtKey accountMasterKey) : base(accountMasterKey)
         {
 
         }
