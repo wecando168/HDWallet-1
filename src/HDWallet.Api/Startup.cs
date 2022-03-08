@@ -19,6 +19,7 @@ using Microsoft.Extensions.PlatformAbstractions;
 using HDWallet.Polkadot;
 using HDWallet.FileCoin;
 using HDWallet.Ed25519;
+using HDWallet.Bitcoin;
 
 namespace HDWallet.Api
 {
@@ -33,7 +34,9 @@ namespace HDWallet.Api
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(options => {
+                options.JsonSerializerOptions.IgnoreNullValues = true;
+            });
             services.AddApiVersioning(opt =>
             {
                 opt.ReportApiVersions = true;
@@ -70,6 +73,7 @@ namespace HDWallet.Api
                 .AddEd25519Coin<PolkadotWallet, PolkadotHDWallet>(settings)
                 .AddSecp256k1Coin<TronWallet, TronHDWallet>(settings)
                 .AddSecp256k1Coin<FileCoinWallet, FileCoinHDWallet>(settings)
+                .AddSecp256k1Coin<BitcoinWallet, BitcoinHDWallet>(settings)
                 ;
         }
 

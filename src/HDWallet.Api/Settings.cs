@@ -9,10 +9,10 @@ namespace HDWallet.Api
         public string Passphrase { get; set; }
         
         public string AccountHDKey { get; set; }
-        
-        public uint AccountNumber { get; set; }
 
         public string[] SelectedCoinEndpoints { get; set; }
+
+        public bool ExportPrivateKey { get; set; }
 
         public void Validate() 
         {

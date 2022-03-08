@@ -3,6 +3,7 @@ using HDWallet.Core;
 using HDWallet.Secp256k1.Sample;
 using HDWallet.Bitcoin;
 using NUnit.Framework;
+using HDWallet.Secp256k1;
 
 namespace HDWallet.Cardano.Tests
 {
@@ -30,6 +31,15 @@ namespace HDWallet.Cardano.Tests
             // Console.WriteLine($"\nAddress: {address}");
             Console.WriteLine($"Public key: {publicKey.ToHex()}");
             Console.WriteLine($"Private key: {privateKey.ToHex()}");
+        }
+
+        [Test]
+        public void ShouldGenerateFromXprv()
+        {
+            var accountExtendedPrivateKey = "xprv9xyvwx1jBEBKwjZtXYogBwDyfXTyTa3Af6urV2dU843CyBxLu9J5GLQL4vMWvaW4q3skqAtarUvdGmBoWQZnU2RBLnmJdCM4FnbMa72xWNy";
+            IAccount<BitcoinWallet> accountWallet = new Account<BitcoinWallet>(accountExtendedPrivateKey, NBitcoin.Network.Main);
+
+            var depositWallet0 = accountWallet.GetExternalWallet(0);
         }
 
         [Test]

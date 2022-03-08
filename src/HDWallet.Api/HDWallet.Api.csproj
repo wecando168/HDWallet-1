@@ -21,6 +21,7 @@
     <ProjectReference Include="..\HDWallet.Avalanche\HDWallet.Avalanche.csproj" />
     <ProjectReference Include="..\HDWallet.Polkadot\HDWallet.Polkadot.csproj" />
     <ProjectReference Include="..\HDWallet.FileCoin\HDWallet.FileCoin.csproj" />
+    <ProjectReference Include="..\HDWallet.Bitcoin\HDWallet.Bitcoin.csproj" />
   </ItemGroup>
 
 </Project>
