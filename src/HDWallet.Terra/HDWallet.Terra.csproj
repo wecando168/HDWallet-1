@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
+        <TargetFrameworks>netstandard2.1;net6.0</TargetFrameworks>
 
         <Title></Title>
         <Description></Description>
-        <Version>0.1.0</Version>
+        <Version>0.2.0-rc.1</Version>
 
         <RepositoryType>git</RepositoryType>
         <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl>

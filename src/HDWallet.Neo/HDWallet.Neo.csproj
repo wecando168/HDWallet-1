@@ -5,7 +5,7 @@
 
     <Title>HDWallet.Neo</Title>
     <Description></Description>
-    <Version>0.1.1</Version>
+    <Version>0.2.0-rc.1</Version>
 
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl>
@@ -26,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
     <ProjectReference Include="..\HDWallet.Secp256r1\HDWallet.Secp256r1.csproj" />
   </ItemGroup>
 
