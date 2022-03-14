@@ -2,10 +2,19 @@
 
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-    <PackageTags>HDWallet;Ethereum</PackageTags>
-    <PackageId>HDWallet.Ethereum</PackageId>
+    <Title>HDWallet.Eth</Title>
+    <Description></Description>
+    <Version>0.1.2</Version>
 
-    <Authors>Turgut Kanceltik</Authors>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl> 
+    <PackageProjectUrl>https://github.com/farukterzioglu/HDWallet</PackageProjectUrl>
+
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>HDWallet;Secp256k1;Ethereum;Blockchain</PackageTags>
+    <PackageId>HDWallet.Eth</PackageId>
+
+    <Authors>Turgut Kanceltik, Faruk Terzioglu</Authors>
     <Company></Company>
   </PropertyGroup>
 
@@ -17,7 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
     <ProjectReference Include="..\HDWallet.Secp256k1\HDWallet.Secp256k1.csproj" />
   </ItemGroup>
 </Project>
