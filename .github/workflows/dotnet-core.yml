@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    name: build, pack & publish
+    name: Build & Test
     runs-on: ubuntu-latest
     steps:
 
