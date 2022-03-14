@@ -1,10 +1,6 @@
 name: Publish Packages
 
 on:
-  create:
-    name:  Release Branch
-    branches: 
-      - release/**
   release:
     types: [published]
 
