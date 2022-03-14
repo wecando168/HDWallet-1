@@ -1,17 +1,17 @@
-name: Build & Test
+name: Publish Packages
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  create:
+    branches: 
+      - release/**
+
 
 jobs:
-  build:
+  publish:
     name: build, pack & publish
     runs-on: ubuntu-latest
     steps:
-
+    
     - name: Checkout repository and submodules
       uses: actions/checkout@v2
       with:
@@ -32,3 +32,12 @@ jobs:
 
     - name: Test
       run: dotnet test HDWallet.sln --no-restore --verbosity normal
+
+    - name: Pack
+      run: dotnet pack -c Release -o pack --no-restore --no-build
+
+    - name: Publish
+      run: dotnet nuget push pack/*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${GITHUB_TOKEN} --skip-duplicate -n true
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
