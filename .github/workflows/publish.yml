@@ -39,5 +39,5 @@ jobs:
     - name: Publish
       run: dotnet nuget push pack/*.nupkg --source 'https://api.nuget.org/v3/index.json' --api-key ${GITHUB_TOKEN} --skip-duplicate -n true
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.NUGET_API_KEY }}
 
