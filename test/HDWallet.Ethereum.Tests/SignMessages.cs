@@ -174,6 +174,7 @@ namespace HDWallet.Ethereum.Tests
             var messageToSign = "Message for ECDSA signing";
             var messageBytes = Encoding.UTF8.GetBytes(messageToSign);
             var sha256 =  NBitcoin.Crypto.Hashes.SHA256(messageBytes);
+            // var sha256 = "9943b071e6ff7c75e9f4716fba01ba64e56ee45dc1e8e36c1da744801ef4c21b".FromHexToByteArray(); // TODO: Test this
 
             // Sign with Nethereum
             var ethereumSigner = new MessageSigner();

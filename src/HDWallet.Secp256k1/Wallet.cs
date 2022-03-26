@@ -1,5 +1,6 @@
 using HDWallet.Core;
 using NBitcoin;
+using NBitcoin.Crypto;
 using NBitcoin.DataEncoders;
 using NBitcoin.Secp256k1;
 using System;
@@ -58,7 +59,7 @@ namespace HDWallet.Secp256k1
             return Key.Parse(privKeyEncoded, Network.Main);
         }
 
-        public Signature Sign(byte[] message)
+        public Signature SignLegacy(byte[] message)
         {
             if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
 
@@ -76,6 +77,31 @@ namespace HDWallet.Secp256k1
                 S = s.ToBytes(),
                 RecId = recId
             };
+        }
+
+        public Signature Sign(byte[] message)
+        {
+            if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
+
+            var compactSignature = PrivateKey.SignCompact(new uint256(message));
+
+            var signature = new Signature
+            {
+                RecId = compactSignature.RecoveryId,
+                R = new byte[32],
+                S = new byte[32]
+            };
+
+            Array.Copy(compactSignature.Signature, sourceIndex: 0, destinationArray: signature.R, destinationIndex: 0, length: 32);
+            Array.Copy(compactSignature.Signature, sourceIndex: 32, destinationArray: signature.S, destinationIndex: 0, length: 32);
+            
+            return signature;
+        }
+
+        public bool Verify(byte[] messageBytes, Signature sig)
+        {
+            ECDSASignature.TryParseFromCompact(sig.ToCompact(), out ECDSASignature signature);
+            return PublicKey.Verify(new uint256(messageBytes), signature);
         }
     }
 }
