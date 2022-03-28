@@ -13,7 +13,7 @@ namespace HDWallet.Polkadot.Tests
 
             Assert.AreEqual(
                 "278117fc144c72340f67d0f2316e8386ceffbf2b2428c9c51fef7c597f1d426e", 
-                wallet.PublicKey.ToHexString());
+                wallet.PublicKeyBytes.ToHexString());
         }
 
         [Test]

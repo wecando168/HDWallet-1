@@ -21,14 +21,14 @@ namespace HDWallet.Polkadot
             return new AddressGenerator();
         }
 
-        public PolkadotSignature SignMessage(byte[] message)
+        public new PolkadotSignature Sign(byte[] message)
         {
             return new PolkadotSignature(base.Sign(message));
         }
 
         public string GetNetworkAddress(AddressType addressType)
         {
-            return ((AddressGenerator)base.AddressGenerator).GenerateAddress(base.PublicKey, addressType);
+            return ((AddressGenerator)base.AddressGenerator).GenerateAddress(base.PublicKeyBytes, addressType);
         }
     }
 }

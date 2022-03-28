@@ -19,12 +19,6 @@
         <Company></Company>
 
     </PropertyGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Nethereum.Web3" Version="3.8.0" />
-        <PackageReference Include="NBitcoin.Secp256k1" Version="1.0.1" />
-    </ItemGroup>
-
     <ItemGroup>
         <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
         <ProjectReference Include="..\HDWallet.Secp256k1\HDWallet.Secp256k1.csproj" />

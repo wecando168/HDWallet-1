@@ -13,6 +13,11 @@ namespace HDWallet.Ethereum
         {
         }
 
+        public new EthereumSignature Sign(byte[] message)
+        {
+            return new EthereumSignature(base.Sign(message));
+        }
+
         protected override IAddressGenerator GetAddressGenerator()
         {
             return new AddressGenerator();

@@ -10,7 +10,7 @@ namespace HDWallet.Secp256
     /// <typeparam name="TWallet"></typeparam>
     public abstract class HDWalletSecpBase<TWallet> : HdWalletBase, IHDWallet<TWallet> where TWallet : IWallet, new()
     {
-        ExtKey _masterKey;
+        readonly ExtKey _masterKey;
 
         /// <summary>
         /// 

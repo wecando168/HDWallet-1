@@ -19,7 +19,7 @@ namespace HDWallet.Solana.Tests
             Assert.AreEqual(expected: "3fD58whN2KJaN9T4r5uE3ELFmzRW1dQNuszrmC6gnhx1", actual: wallet.Address);
 
             Console.WriteLine(wallet.Address);
-            Console.WriteLine(wallet.PublicKey.ToHexString());
+            Console.WriteLine(wallet.PublicKeyBytes.ToHexString());
             Console.WriteLine($"[{string.Join(", ", wallet.ExpandedPrivateKey)}]");
         }
 
@@ -50,7 +50,7 @@ namespace HDWallet.Solana.Tests
             var wallet = hdWallet.GetAccount(0).GetExternalWallet(0);
 
             Console.WriteLine(wallet.Address);
-            Console.WriteLine(wallet.PublicKey.ToHexString());
+            Console.WriteLine(wallet.PublicKeyBytes.ToHexString());
             Console.WriteLine(wallet.PrivateKeyBytes.ToHexString());
             Console.WriteLine(wallet.ExpandedPrivateKey.ToHexString());
             Console.WriteLine($"[{string.Join(", ", wallet.ExpandedPrivateKey)}]");
