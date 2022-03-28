@@ -8,7 +8,7 @@ namespace HDWallet.Ed25519
 {
     public abstract class Wallet : IWallet
     {
-        public byte[] PublicKey;
+        public byte[] PublicKeyBytes { get; private set; }
     
         public uint Index { get; set; }
 
@@ -29,7 +29,7 @@ namespace HDWallet.Ed25519
                 ReadOnlySpan<byte> privateKeySpan = privateKey.AsSpan();
                 var publicKey = privateKeySpan.ExtractPublicKey();
 
-                PublicKey = publicKey.ToArray();
+                PublicKeyBytes = publicKey.ToArray();
             }
         }
         public byte[] ExpandedPrivateKey {
@@ -50,7 +50,7 @@ namespace HDWallet.Ed25519
             return buffer.ToArray();
         }
 
-        public string Address => AddressGenerator.GenerateAddress(PublicKey);
+        public string Address => AddressGenerator.GenerateAddress(PublicKeyBytes);
 
         public IAddressGenerator AddressGenerator {get; private set; }
       
@@ -78,7 +78,7 @@ namespace HDWallet.Ed25519
         {
             // if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
 
-            var signature = Signer.Sign(message, this.PrivateKeyBytes, this.PublicKey);
+            var signature = Signer.Sign(message, this.PrivateKeyBytes, this.PublicKeyBytes);
             var signatureHex = signature.ToArray().ToHexString();
 
             
@@ -93,6 +93,11 @@ namespace HDWallet.Ed25519
                 R = rsigPad,
                 S = ssigPad
             };
+        }
+
+        public bool Verify(byte[] message, Signature sig)
+        {
+            throw new NotImplementedException();
         }
     }
 }

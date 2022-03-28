@@ -29,6 +29,8 @@ namespace HDWallet.Secp256.Tests
             }
         }
 
+        public byte[] PublicKeyBytes => this.PublicKey.ToBytes();
+
         internal IAddressGenerator AddressGenerator { get; private set; }
 
         public SampleSecp256Wallet()
@@ -61,6 +63,11 @@ namespace HDWallet.Secp256.Tests
         }
 
         public Signature Sign(byte[] message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Verify(byte[] message, Signature sig)
         {
             throw new NotImplementedException();
         }

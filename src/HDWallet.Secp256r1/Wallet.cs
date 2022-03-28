@@ -35,6 +35,8 @@ namespace HDWallet.Secp256r1
             }
         }
 
+        public byte[] PublicKeyBytes => PublicKey.ToString().FromHexToByteArray();
+
         public Wallet(string privateKey) : this()
         {
             var privateKeyToByte = privateKey.HexToBytes();
@@ -60,6 +62,11 @@ namespace HDWallet.Secp256r1
         }
 
         public Signature Sign(byte[] message)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Verify(byte[] message, Signature sig)
         {
             throw new NotImplementedException();
         }
