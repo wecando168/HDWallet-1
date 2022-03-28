@@ -53,7 +53,7 @@ namespace HDWallet.Ethereum.Tests
             var sha256 =  NBitcoin.Crypto.Hashes.SHA256(messageBytes);
 
             IHDWallet<EthereumWallet> hdWallet = new EthereumHDWallet(mnemonic: mnemonic, passphrase : "");
-            EthereumWallet wallet = hdWallet.GetAccount(0).GetExternalWallet(0);
+            IWallet wallet = hdWallet.GetAccount(0).GetExternalWallet(0);
 
             // Sign with HdWallet
             var signature = wallet.Sign(sha256);
@@ -69,14 +69,14 @@ namespace HDWallet.Ethereum.Tests
             Assert.True(isVerified);
 
             // Verify with Pubkey using Nethererum
-            var pubKey = new EthECKey(wallet.PublicKey.ToBytes(), isPrivate: false);
+            var pubKey = new EthECKey(wallet.PublicKeyBytes, isPrivate: false);
             isVerified = pubKey.Verify(sha256, signatureFromComp);
             Assert.True(isVerified);
 
             // Verify with NBitcoin pubkey
-            var nBitcoinPubKey = wallet.PublicKey;
+            PubKey.TryCreatePubKey(wallet.PublicKeyBytes, out PubKey nBitcoinPubKey);
 
-            var isParsed = signature.TryGetECDSASignature(out ECDSASignature ecdsaSignature);
+            var isParsed = new EthereumSignature(signature).TryGetECDSASignature(out ECDSASignature ecdsaSignature);
             Assert.IsTrue(isParsed);
 
             isVerified = nBitcoinPubKey.Verify(new uint256(sha256), ecdsaSignature);

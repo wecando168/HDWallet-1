@@ -31,6 +31,8 @@ namespace HDWallet.Secp256k1
             }
         }
 
+        public byte[] PublicKeyBytes => this.PublicKey.ToBytes();
+
         internal IAddressGenerator AddressGenerator { get; private set; }
 
         public Wallet()
@@ -79,7 +81,7 @@ namespace HDWallet.Secp256k1
             };
         }
 
-        public Signature Sign(byte[] message)
+        Signature IWallet.Sign(byte[] message)
         {
             if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
 
@@ -98,10 +100,15 @@ namespace HDWallet.Secp256k1
             return signature;
         }
 
-        public bool Verify(byte[] messageBytes, Signature sig)
+        bool IWallet.Verify(byte[] message, Signature sig)
         {
             ECDSASignature.TryParseFromCompact(sig.ToCompact(), out ECDSASignature signature);
-            return PublicKey.Verify(new uint256(messageBytes), signature);
+            return PublicKey.Verify(new uint256(message), signature);
+        }
+
+        public Secp256k1Signature Sign(byte[] message)
+        {
+            return new Secp256k1Signature( ((IWallet)this).Sign(message));
         }
     }
 }
