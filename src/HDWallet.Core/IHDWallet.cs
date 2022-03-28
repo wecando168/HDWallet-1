@@ -1,6 +1,6 @@
 namespace HDWallet.Core
 {
-    public interface IHDWallet<TWallet> where TWallet : IWallet, new()
+    public interface IHDWallet<out TWallet> where TWallet : IWallet, new()
     {
         /// <summary>
         /// Returns a wallet from only seed, no derivation 
