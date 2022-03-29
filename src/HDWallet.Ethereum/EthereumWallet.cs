@@ -5,13 +5,9 @@ namespace HDWallet.Ethereum
 {
     public class EthereumWallet : Wallet, IWallet
     {
-        public EthereumWallet()
-        {
-        }
+        public EthereumWallet() {}
 
-        public EthereumWallet(string privateKey) : base(privateKey)
-        {
-        }
+        public EthereumWallet(string privateKey) : base(privateKey) {}
 
         public new EthereumSignature Sign(byte[] message)
         {

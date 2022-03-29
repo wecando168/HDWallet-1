@@ -64,8 +64,7 @@ namespace HDWallet.Secp256
 
             return new TWallet()
             {
-                PrivateKeyBytes = externalMasterKey.PrivateKey.ToBytes(),
-                Index = accountIndex
+                PrivateKeyBytes = externalMasterKey.PrivateKey.ToBytes()
             };
         }
 

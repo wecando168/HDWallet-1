@@ -48,7 +48,7 @@ namespace HDWallet.Secp256k1
             PrivateKeyBytes = PrivateKey.ToBytes();
         }
 
-        private Key PrivateKeyParse(string privateKey)
+        private static Key PrivateKeyParse(string privateKey)
         {
             byte[] privKeyPrefix = new byte[] { (128) };
             byte[] prefixedPrivKey = Helper.Concat(privKeyPrefix, Encoders.Hex.DecodeData(privateKey));

@@ -11,13 +11,9 @@ namespace HDWallet.Bitcoin
 
     public class BitcoinWallet : Wallet, IWallet
     {
-        public BitcoinWallet()
-        {
-        }
+        public BitcoinWallet() {}
 
-        public BitcoinWallet(string privateKey) : base(privateKey)
-        {
-        }
+        public BitcoinWallet(string privateKey) : base(privateKey) {}
 
         protected override IAddressGenerator GetAddressGenerator()
         {
