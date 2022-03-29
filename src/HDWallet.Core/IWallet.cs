@@ -10,8 +10,6 @@ namespace HDWallet.Core
 
         byte[] PublicKeyBytes { get; }
 
-        uint Index { get; set; }
-
         bool Verify(byte[] message, Signature sig);
     }
 }
