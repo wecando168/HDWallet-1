@@ -1,16 +1,12 @@
 name: Publish Packages
 
 on:
-  create:
-    name:  Release Branch
-    branches: 
-      - release/**
   release:
     types: [published]
 
 jobs:
   publish:
-    name: build, pack & publish
+    name: Build, pack & publish
     runs-on: ubuntu-latest
     steps:
     

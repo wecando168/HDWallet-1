@@ -101,7 +101,7 @@ namespace HDWallet.Ed25519.Tests
 
         public string GetNetworkAddress(AddressType addressType)
         {
-            return ((AddressGenerator)base.AddressGenerator).GenerateAddress(base.PublicKey, addressType);
+            return ((AddressGenerator)base.AddressGenerator).GenerateAddress(base.PublicKeyBytes, addressType);
         }
     }
 
@@ -129,7 +129,7 @@ namespace HDWallet.Ed25519.Tests
             var address = coinTypeWallet.GetNetworkAddress(AddressType.PolkadotLive);
 
             Console.WriteLine($"Path: {path}, address: {address}");
-            Console.WriteLine($"Public key: {coinTypeWallet.PublicKey.ToHexString()}");
+            Console.WriteLine($"Public key: {coinTypeWallet.PublicKeyBytes.ToHexString()}");
             Console.WriteLine($"Private key: {coinTypeWallet.PrivateKeyBytes.ToHexString()}");
         }
     }

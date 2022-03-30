@@ -6,9 +6,9 @@ namespace HDWallet.Secp256
 {
     public class AccountSecpBase<TWallet> : IAccount<TWallet> where TWallet : IWallet, new()
     {
-        private ExtKey _masterKey;
-        private ExtKey ExternalChain { get; set; }
-        private ExtKey InternalChain { get; set; }
+        private readonly ExtKey _masterKey;
+        private readonly ExtKey _externalChain;
+        private readonly ExtKey _internalChain;
 
         /// <summary>
         /// Generate for 'Main' network by default. 
@@ -23,10 +23,10 @@ namespace HDWallet.Secp256
             _masterKey = bitcoinExtKey.ExtKey;
 
             var externalKeyPath = new KeyPath("0");
-            ExternalChain = _masterKey.Derive(externalKeyPath);
+            _externalChain = _masterKey.Derive(externalKeyPath);
 
             var internalKeyPath = new KeyPath("1");
-            InternalChain = _masterKey.Derive(internalKeyPath);
+            _internalChain = _masterKey.Derive(internalKeyPath);
         }
 
         /// <summary>
@@ -40,10 +40,10 @@ namespace HDWallet.Secp256
             _masterKey = bitcoinExtKey.ExtKey;
 
             var externalKeyPath = new KeyPath("0");
-            ExternalChain = _masterKey.Derive(externalKeyPath);
+            _externalChain = _masterKey.Derive(externalKeyPath);
 
             var internalKeyPath = new KeyPath("1");
-            InternalChain = _masterKey.Derive(internalKeyPath);
+            _internalChain = _masterKey.Derive(internalKeyPath);
         }
 
         /// <summary>
@@ -55,10 +55,10 @@ namespace HDWallet.Secp256
             _masterKey = accountMasterKey;
 
             var externalKeyPath = new KeyPath("0");
-            ExternalChain = _masterKey.Derive(externalKeyPath);
+            _externalChain = _masterKey.Derive(externalKeyPath);
 
             var internalKeyPath = new KeyPath("1");
-            InternalChain = _masterKey.Derive(internalKeyPath);
+            _internalChain = _masterKey.Derive(internalKeyPath);
         }
 
         TWallet IAccount<TWallet>.GetInternalWallet(uint addressIndex)
@@ -73,12 +73,11 @@ namespace HDWallet.Secp256
 
         private TWallet GetWallet(uint addressIndex, bool isInternal)
         {
-            var extKey = isInternal ? InternalChain.Derive(addressIndex) : ExternalChain.Derive(addressIndex);
+            var extKey = isInternal ? _internalChain.Derive(addressIndex) : _externalChain.Derive(addressIndex);
 
             return new TWallet()
             {
-                PrivateKeyBytes = extKey.PrivateKey.ToBytes(),
-                Index = addressIndex
+                PrivateKeyBytes = extKey.PrivateKey.ToBytes()
             };
         }
     }

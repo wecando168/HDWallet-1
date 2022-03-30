@@ -22,7 +22,7 @@ namespace HDWallet.Cardano.Tests
             CardanoWallet wallet = hdWallet.GetCoinTypeWallet();
 
             Assert.AreEqual(ReferencePrivateKey, wallet.PrivateKeyBytes.ToHexString());
-            Assert.AreEqual(ReferencePubKey, $"00{wallet.PublicKey.ToHexString()}");
+            Assert.AreEqual(ReferencePubKey, $"00{wallet.PublicKeyBytes.ToHexString()}");
         }
 
 
@@ -35,7 +35,7 @@ namespace HDWallet.Cardano.Tests
             IHDWallet<CardanoWallet> hdWallet = new CardanoHDWallet(mnemonic, string.Empty);
             CardanoWallet wallet = hdWallet.GetAccount((uint)accountIndex).GetExternalWallet((uint)walletIndex);
 
-            string pubKey = $"00{wallet.PublicKey.ToHexString()}";
+            string pubKey = $"00{wallet.PublicKeyBytes.ToHexString()}";
             string privKey = wallet.PrivateKeyBytes.ToHexString();
 
             Assert.AreEqual(expectedPrivateKey, privKey);
@@ -51,7 +51,7 @@ namespace HDWallet.Cardano.Tests
             IHDWallet<CardanoWallet> hdWallet = new CardanoHDWallet(mnemonic, string.Empty);
             CardanoWallet wallet = hdWallet.GetAccount((uint)accountIndex).GetInternalWallet((uint)walletIndex);
 
-            string pubKey = $"00{wallet.PublicKey.ToHexString()}";
+            string pubKey = $"00{wallet.PublicKeyBytes.ToHexString()}";
             string privKey = wallet.PrivateKeyBytes.ToHexString();
 
             Assert.AreEqual(expectedPrivateKey, privKey);

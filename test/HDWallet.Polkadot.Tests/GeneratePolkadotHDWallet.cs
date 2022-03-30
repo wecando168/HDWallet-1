@@ -19,7 +19,7 @@ namespace HDWallet.Polkadot.Tests
             var address = coinTypeWallet.GetNetworkAddress(AddressType.PolkadotLive);
 
             Console.WriteLine($"Address: {address}");
-            Console.WriteLine($"Public key: {coinTypeWallet.PublicKey.ToHexString()}");
+            Console.WriteLine($"Public key: {coinTypeWallet.PublicKeyBytes.ToHexString()}");
             Console.WriteLine($"Private key: {coinTypeWallet.PrivateKeyBytes.ToHexString()}");
         }
         
@@ -32,7 +32,7 @@ namespace HDWallet.Polkadot.Tests
             var wallet = hdWallet.GetAccount(0).GetExternalWallet(0);
             var address = wallet.Address;
             var polkadotAddress = wallet.GetNetworkAddress(AddressType.PolkadotLive);
-            var publicKey = wallet.PublicKey;
+            var publicKey = wallet.PublicKeyBytes;
             var privateKey = wallet.PrivateKeyBytes;
             var expandedPrivateKey = wallet.ExpandedPrivateKey;
 
@@ -69,7 +69,7 @@ namespace HDWallet.Polkadot.Tests
 
             var wallet = hdWallet.GetAccount(0).GetExternalWallet(0);
             var address = wallet.Address;
-            var publicKey = wallet.PublicKey;
+            var publicKey = wallet.PublicKeyBytes;
             var privateKey = wallet.PrivateKeyBytes;
             var expandedPrivateKey = wallet.ExpandedPrivateKey;
 
