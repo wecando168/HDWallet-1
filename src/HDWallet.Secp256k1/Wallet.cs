@@ -10,9 +10,9 @@ namespace HDWallet.Secp256k1
     public abstract class Wallet : IWallet
     {
         public Key PrivateKey;
+
         public PubKey PublicKey => PrivateKey.PubKey;
 
-        public uint Index { get; set; }
         public string Address => AddressGenerator.GenerateAddress(PublicKey.ToBytes());
 
         private byte[] privateKeyBytes;
