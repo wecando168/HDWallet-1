@@ -6,8 +6,8 @@ namespace HDWallet.Ethereum
     public class EthereumPublicWallet : PublicWallet, IPublicWallet
     {
         public EthereumPublicWallet() {}
-        public EthereumPublicWallet(string privateKey) : base(privateKey) {}
-        public EthereumPublicWallet(byte[] publicKeyBytes) : base(publicKeyBytes) {}
+        public EthereumPublicWallet(string publicKey) : base(publicKey: publicKey) {}
+        public EthereumPublicWallet(byte[] publicKeyBytes) : base(publicKeyBytes: publicKeyBytes) {}
 
         protected override IAddressGenerator GetAddressGenerator()
         {
