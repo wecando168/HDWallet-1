@@ -63,5 +63,30 @@ namespace HDWallet.Ethereum.Tests
             var walletAddress = ethereumWallet.Address;
             Assert.AreEqual(expected: "0xA2ae76fb87C154580a034c116115cE39441Add6F", actual: walletAddress);
         }
+
+        [Test]
+        public void ShouldGenerateFromPublickey()
+        {
+            IPublicWallet publicWallet = new EthereumPublicWallet("02ba33e9bba01836a3c5c8c4aa70abb16ccffc66470d40def867a0d66fa3d40c27");
+            Assert.AreEqual(expected: "0xA2ae76fb87C154580a034c116115cE39441Add6F", actual: publicWallet.Address);
+        }
+
+        [Test]
+        public void ShouldGenerateFromPublickeyBytes()
+        {
+            var ethereumWallet = new EthereumWallet("ca5edb4b5db35fc6677d9c6fe223afc3343014653b159ae4291f543a78761c87");
+
+            IPublicWallet publicWallet = new EthereumPublicWallet(ethereumWallet.PublicKeyBytes);
+            Assert.AreEqual(expected: "0xA2ae76fb87C154580a034c116115cE39441Add6F", actual: publicWallet.Address);
+        }
+
+        [Test]
+        public void ShouldGenerateFromPublickeyBytesAndMatchWithWallet()
+        {
+            IWallet         ethereumWallet =    new EthereumWallet("ca5edb4b5db35fc6677d9c6fe223afc3343014653b159ae4291f543a78761c87");
+            IPublicWallet   publicWallet =      new EthereumPublicWallet("02ba33e9bba01836a3c5c8c4aa70abb16ccffc66470d40def867a0d66fa3d40c27");
+
+            Assert.AreEqual(expected: ethereumWallet.Address, actual: publicWallet.Address);
+        }
     }
 }
