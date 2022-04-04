@@ -21,12 +21,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="dotnetstandard-bip32" Version="1.0.0" />
       <PackageReference Include="Ed25519" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
+    <ProjectReference Include="..\Dependencies\dotnetstandard-bip32\dotnetstandard-bip32\dotnetstandard-bip32.csproj" />
   </ItemGroup>
 
 </Project>
