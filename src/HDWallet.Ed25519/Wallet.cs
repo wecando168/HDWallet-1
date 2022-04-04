@@ -9,8 +9,6 @@ namespace HDWallet.Ed25519
     public abstract class Wallet : IWallet
     {
         public byte[] PublicKeyBytes { get; private set; }
-    
-        public uint Index { get; set; }
 
         public string Path {get; set;}
         

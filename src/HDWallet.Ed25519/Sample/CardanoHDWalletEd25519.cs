@@ -14,7 +14,6 @@ namespace HDWallet.Ed25519.Sample
             var externalKeyPath = $"{accountIndex}'/2'/0'";
 
             var rewardWallet = GetSubWallet(externalKeyPath);
-            rewardWallet.Index = 0;
 
             return rewardWallet;
         }
