@@ -21,6 +21,7 @@ namespace HDWallet.Core
         Solana = 501,
         Blockstack = 5757,
         Neo = 888,
-        Terra = 330
+        Terra = 330,
+        Algorand = 283
     }
 }
