@@ -6,18 +6,17 @@ namespace HDWallet.Ed25519
 {
     public abstract class HdWalletEd25519Base : HdWalletBase
     {
-        protected BIP32 bip32 = new BIP32();
-
         protected HdWalletEd25519Base(string seed) : base(seed){}
         protected HdWalletEd25519Base(string mnemonic, string passphrase) : base(mnemonic, passphrase){}
 
         public TWallet GetWalletFromPath<TWallet>(string path) where TWallet : Wallet, new()
         {
-            var derivePath = bip32.DerivePath(path, this.BIP39Seed);
+            ExtKey extKey = new ExtKey(seed: this.BIP39Seed);
+            ExtKey derivedKey = extKey.DerivePath(path);
 
             return new TWallet() {
                 Path = path,
-                PrivateKeyBytes = derivePath.Key
+                PrivateKeyBytes = derivedKey.Key.PrivateKey
             };
         }
 
@@ -25,9 +24,8 @@ namespace HDWallet.Ed25519
 
     public abstract class HdWalletEd25519<TWallet> : HdWalletEd25519Base, IHDWallet<TWallet> where TWallet : Wallet, IWallet, new()
     {
-        TWallet _coinTypeWallet;
-
-        string _path;
+        readonly TWallet _coinTypeWallet;
+        readonly string _path;
 
         [Obsolete("Only for testing")]
         protected HdWalletEd25519(string seed) : base(seed) {}
@@ -36,10 +34,11 @@ namespace HDWallet.Ed25519
         {
             _path = path;
 
-            var derivePath = bip32.DerivePath(path, this.BIP39Seed);
+            ExtKey extKey = new ExtKey(seed: this.BIP39Seed);
+            ExtKey derivedKey = extKey.DerivePath(path);
 
             _coinTypeWallet = new TWallet() {
-                PrivateKeyBytes = derivePath.Key
+                PrivateKeyBytes = derivedKey.Key.PrivateKey
             };
         }
         protected HdWalletEd25519(string seed, CoinPath path) : this(seed, path.ToString()) {}
@@ -48,10 +47,11 @@ namespace HDWallet.Ed25519
         {
             _path = path;
 
-            var derivePath = bip32.DerivePath(path, this.BIP39Seed);
+            ExtKey extKey = new ExtKey(seed: this.BIP39Seed);
+            ExtKey derivedKey = extKey.DerivePath(path);
 
             _coinTypeWallet = new TWallet() {
-                PrivateKeyBytes = derivePath.Key
+                PrivateKeyBytes = derivedKey.Key.PrivateKey
             };
         }
         protected HdWalletEd25519(string mnemonic, string passphrase, CoinPath path) : this(mnemonic, passphrase, path.ToString()) {}
