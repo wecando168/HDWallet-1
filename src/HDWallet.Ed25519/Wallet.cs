@@ -2,7 +2,7 @@ using System;
 using HDWallet.Core;
 using Ed25519;
 using NBitcoin.DataEncoders;
-using bip32;
+using HDWallet.BIP32.Ed25519;
 
 namespace HDWallet.Ed25519
 {

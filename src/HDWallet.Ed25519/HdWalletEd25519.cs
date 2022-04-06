@@ -1,5 +1,5 @@
 using System;
-using bip32;
+using HDWallet.BIP32.Ed25519;
 using HDWallet.Core;
 
 namespace HDWallet.Ed25519

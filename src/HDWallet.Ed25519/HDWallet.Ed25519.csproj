@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\HDWallet.Core\HDWallet.Core.csproj" />
+    <ProjectReference Include="..\HDWallet.BIP32.Ed25519\HDWallet.BIP32.Ed25519.csproj" />
   </ItemGroup>
 
 </Project>
