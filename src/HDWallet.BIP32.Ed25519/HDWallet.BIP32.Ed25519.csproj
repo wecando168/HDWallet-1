@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  
+    <Title>HDWallet.BIP32.Ed25519</Title>
+    <Description></Description>
+    <Version>0.1.0</Version>
+
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl> 
+    <PackageProjectUrl>https://github.com/farukterzioglu/HDWallet</PackageProjectUrl>
+    
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>HDWallet;Ed25519;BIP32;Blockchain</PackageTags>
+    <PackageId>HDWallet.BIP32.Ed25519</PackageId>
+    
+    <Authors>Faruk Terzioglu</Authors>
+    <Company></Company>
+  </PropertyGroup>
+
+</Project>
