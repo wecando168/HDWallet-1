@@ -16,11 +16,10 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using HDWallet.BIP32.Ed25519;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace HDWallet.BIP32.Ed25519.Tests
 {
-    [TestClass]
     public class VectorTests
     {
         private const string Vector1Seed = "000102030405060708090a0b0c0d0e0f";
@@ -56,7 +55,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             return publicKey;
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector1_Test1()
         {
             const string expectedPath = "m/0'";
@@ -76,7 +75,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector1_Test2()
         {
             const string expectedPath = "m/0'/1'";
@@ -96,7 +95,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector1_Test3()
         {
             const string expectedPath = "m/0'/1'/2'";
@@ -116,7 +115,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector1_Test4()
         {
             const string expectedPath = "m/0'/1'/2'/2'";
@@ -136,7 +135,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector1_Test5()
         {
             const string expectedPath = "m/0'/1'/2'/2'/1000000000'";
@@ -156,7 +155,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector2_Test1()
         {
             const string expectedPath = "m/0'";
@@ -176,7 +175,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector2_Test2()
         {
             const string expectedPath = "m/0'/2147483647'";
@@ -196,7 +195,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector2_Test3()
         {
             const string expectedPath = "m/0'/2147483647'/1'";
@@ -216,7 +215,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
             Assert.AreEqual(expectedPublicKey, testPublicKey.ToStringHex());
         }
 
-        [TestMethod]
+        [Test]
         public void TestVector2_Test4()
         {
             const string expectedPath = "m/0'/2147483647'/1'/2147483646'";
@@ -237,7 +236,7 @@ namespace HDWallet.BIP32.Ed25519.Tests
         }
 
 
-        [TestMethod]
+        [Test]
         public void TestVector2_Test5()
         {
             const string expectedPath = "m/0'/2147483647'/1'/2147483646'/2'";
