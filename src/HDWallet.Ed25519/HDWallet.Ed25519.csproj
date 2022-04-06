@@ -5,7 +5,7 @@
 
     <Title>HDWallet.Ed25519</Title>
     <Description></Description>
-    <Version>0.8.0</Version>
+    <Version>0.9.0</Version>
 
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/farukterzioglu/HDWallet</RepositoryUrl> 
