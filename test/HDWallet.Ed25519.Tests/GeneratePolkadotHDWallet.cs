@@ -124,9 +124,9 @@ namespace HDWallet.Ed25519.Tests
 
             // TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(mnemonic, "");
             TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(seed);
-            var coinTypeWallet = hdWallet.GetWalletFromPath<PolkadotWallet>(path);
+            var coinTypeWallet = hdWallet.GetWalletFromPath(path);
  
-            var address = coinTypeWallet.GetNetworkAddress(AddressType.PolkadotLive);
+            var address = new PolkadotWallet(coinTypeWallet.PrivateKeyBytes.ToHexString()).GetNetworkAddress(AddressType.PolkadotLive);
 
             Console.WriteLine($"Path: {path}, address: {address}");
             Console.WriteLine($"Public key: {coinTypeWallet.PublicKeyBytes.ToHexString()}");

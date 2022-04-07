@@ -55,25 +55,6 @@ namespace HDWallet.BIP32.Ed25519
             }
         }
 
-        private (byte[] Key, byte[] ChainCode) GetChildKeyDerivation(byte[] key, byte[] chainCode, uint index)
-        {
-            BigEndianBuffer buffer = new BigEndianBuffer();
-
-            buffer.Write(new byte[] { 0 });
-            buffer.Write(key);
-            buffer.WriteUInt(index);
-
-            using (HMACSHA512 hmacSha512 = new HMACSHA512(chainCode))
-            {
-                var i = hmacSha512.ComputeHash(buffer.ToArray());
-
-                var il = i.Slice(0, 32);
-                var ir = i.Slice(32);
-
-                return (Key: il, ChainCode: ir);
-            }
-        }
-
         private bool IsValidPath(string path)
         {
             var regex = new Regex("^m(\\/[0-9]+')+$");
@@ -95,8 +76,6 @@ namespace HDWallet.BIP32.Ed25519
             if (!IsValidPath(path))
                 throw new FormatException("Invalid derivation path");
 
-            var masterKeyFromSeed = (Key: this.Key.PrivateKey, this.ChainCode);
-
             var segments = path
                 .Split('/')
                 .Slice(1)
@@ -104,11 +83,15 @@ namespace HDWallet.BIP32.Ed25519
                 .Select(a => Convert.ToUInt32(a, 10));
 
             var results = segments
-                .Aggregate(masterKeyFromSeed, (mks, next) => GetChildKeyDerivation(mks.Key, mks.ChainCode, next + hardenedOffset));
+                .Aggregate(this, (mks, next) => mks.Derive(next));
 
-            return new ExtKey(results.Key, results.ChainCode);
+            return results;
         }
 
-
+        public ExtKey Derive(uint index)
+		{
+			(var childkey, var childcc)  = this.Key.Derivate(this.ChainCode, index + hardenedOffset);
+			return new ExtKey(childkey, childcc);
+		}
     }
 }

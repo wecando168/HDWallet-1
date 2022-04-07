@@ -10,8 +10,6 @@ namespace HDWallet.Ed25519
     {
         public byte[] PublicKeyBytes { get; private set; }
 
-        public string Path {get; set;}
-        
         byte[] privateKey;
         public byte[] PrivateKeyBytes
         {

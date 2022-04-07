@@ -13,6 +13,7 @@
 //    limitations under the License.
 
 using Chaos.NaCl;
+using System.Security.Cryptography;
 
 namespace HDWallet.BIP32.Ed25519
 {
@@ -51,6 +52,25 @@ namespace HDWallet.BIP32.Ed25519
 
             buffer.Write(expandedPrivateKey);
             return buffer.ToArray();
+        }
+
+        public (byte[] key, byte[] ccChild) Derivate(byte[] cc, uint nChild)
+        {
+            BigEndianBuffer buffer = new BigEndianBuffer();
+
+            buffer.Write(new byte[] { 0 });
+            buffer.Write(this.PrivateKey);
+            buffer.WriteUInt(nChild);
+
+            using (HMACSHA512 hmacSha512 = new HMACSHA512(cc))
+            {
+                var i = hmacSha512.ComputeHash(buffer.ToArray());
+
+                var il = i.Slice(0, 32);
+                var ir = i.Slice(32);
+
+                return (key: il, ccChild: ir);
+            }
         }
     }
 }

@@ -14,9 +14,9 @@ namespace HDWallet.Polkadot.Tests
         {
             var testMne = "identify fatal close west parent myself awake impact shoot wide wrong derive ship doctor mushroom weather absent vacant armed chuckle swarm hip music wing";
             
-            TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(testMne, "");
-            var coinTypeWallet = hdWallet.GetWalletFromPath<PolkadotWallet>("m/44'/354'/0'/0'/1'");
-            var address = coinTypeWallet.GetNetworkAddress(AddressType.PolkadotLive);
+            IHDWallet<SampleWallet> hdWallet = new TestHDWalletEd25519(testMne, "");
+            var coinTypeWallet = hdWallet.GetAccount(0).GetExternalWallet(1); // "m/44'/354'/0'/0'/1'"
+            var address = new PolkadotWallet(coinTypeWallet.PrivateKeyBytes.ToHexString()).GetNetworkAddress(AddressType.PolkadotLive);
 
             Console.WriteLine($"Address: {address}");
             Console.WriteLine($"Public key: {coinTypeWallet.PublicKeyBytes.ToHexString()}");
@@ -36,11 +36,11 @@ namespace HDWallet.Polkadot.Tests
             var privateKey = wallet.PrivateKeyBytes;
             var expandedPrivateKey = wallet.ExpandedPrivateKey;
 
-            Assert.AreEqual(expected: "5G6tXDeie2KaUgGrwkBfzApKSCm9sE5QvBm1bi1vmBZ4gcCN", actual: address);
-            Assert.AreEqual(expected: "153BfYunVob3vDHNuPEg8KeUHpkoZXdYzgVVm11HKGaarp6Y", actual: polkadotAddress);
-            Assert.AreEqual(expected: "b29b533725c02f6e69d8774c92d8a5a98506c2f09e13a1adbe4db367fbfa512a", actual: publicKey.ToHexString());
             Assert.AreEqual(expected: "8bd78fe8b30abf91d3e9474c8927d9874fabc7e31ce2d866cf795378161f954a", actual: privateKey.ToHexString());
             Assert.AreEqual(expected: "8bd78fe8b30abf91d3e9474c8927d9874fabc7e31ce2d866cf795378161f954ab29b533725c02f6e69d8774c92d8a5a98506c2f09e13a1adbe4db367fbfa512a", actual: expandedPrivateKey.ToHexString());
+            Assert.AreEqual(expected: "b29b533725c02f6e69d8774c92d8a5a98506c2f09e13a1adbe4db367fbfa512a", actual: publicKey.ToHexString());
+            Assert.AreEqual(expected: "5G6tXDeie2KaUgGrwkBfzApKSCm9sE5QvBm1bi1vmBZ4gcCN", actual: address);
+            Assert.AreEqual(expected: "153BfYunVob3vDHNuPEg8KeUHpkoZXdYzgVVm11HKGaarp6Y", actual: polkadotAddress);
             
             Console.WriteLine($"\nAddress: {address}");
             Console.WriteLine($"Public key: {publicKey.ToHexString()}");
@@ -73,10 +73,10 @@ namespace HDWallet.Polkadot.Tests
             var privateKey = wallet.PrivateKeyBytes;
             var expandedPrivateKey = wallet.ExpandedPrivateKey;
 
-            Assert.AreEqual(expected: "5G6tXDeie2KaUgGrwkBfzApKSCm9sE5QvBm1bi1vmBZ4gcCN", actual: address);
-            Assert.AreEqual(expected: "b29b533725c02f6e69d8774c92d8a5a98506c2f09e13a1adbe4db367fbfa512a", actual: publicKey.ToHexString());
             Assert.AreEqual(expected: "8bd78fe8b30abf91d3e9474c8927d9874fabc7e31ce2d866cf795378161f954a", actual: privateKey.ToHexString());
             Assert.AreEqual(expected: "8bd78fe8b30abf91d3e9474c8927d9874fabc7e31ce2d866cf795378161f954ab29b533725c02f6e69d8774c92d8a5a98506c2f09e13a1adbe4db367fbfa512a", actual: expandedPrivateKey.ToHexString());
+            Assert.AreEqual(expected: "b29b533725c02f6e69d8774c92d8a5a98506c2f09e13a1adbe4db367fbfa512a", actual: publicKey.ToHexString());
+            Assert.AreEqual(expected: "5G6tXDeie2KaUgGrwkBfzApKSCm9sE5QvBm1bi1vmBZ4gcCN", actual: address);
         }
 
         [Test]

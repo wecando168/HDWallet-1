@@ -16,10 +16,10 @@ namespace HDWallet.Cardano.Tests
         [Test]
         public void ShouldGenerateFromMnemonic()
         {
-            CardanoHDWallet hdWallet = new CardanoHDWallet(mnemonic, string.Empty);
-            Assert.AreEqual(ReferenceSeed, hdWallet.BIP39Seed);
+            IHDWallet<CardanoWallet> hdWallet = new CardanoHDWallet(mnemonic, string.Empty);
+            Assert.AreEqual(ReferenceSeed, ((CardanoHDWallet)hdWallet).BIP39Seed);
 
-            CardanoWallet wallet = hdWallet.GetCoinTypeWallet();
+            CardanoWallet wallet = hdWallet.GetMasterWallet();
 
             Assert.AreEqual(ReferencePrivateKey, wallet.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(ReferencePubKey, $"00{wallet.PublicKeyBytes.ToHexString()}");
