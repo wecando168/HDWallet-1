@@ -1,4 +1,5 @@
 using System;
+using HDWallet.BIP32.Ed25519;
 using HDWallet.Core;
 
 namespace HDWallet.Ed25519
@@ -7,31 +8,35 @@ namespace HDWallet.Ed25519
     /// Account generated with Edwards Curve
     /// </summary>
     /// <typeparam name="TWallet"></typeparam>
-    public class Account<TWallet> : IAccount<TWallet> where TWallet : Wallet, IWallet, new()
+    public class Account<TWallet> : IAccount<TWallet> where TWallet : IWallet, new()
     {
-        readonly uint _accountIndex;
-        readonly Func<string, TWallet> _deriveFunction;
+        private readonly ExtKey _masterKey;
+        private readonly ExtKey _externalChain;
+        private readonly ExtKey _internalChain;
 
-        internal Account(uint accountIndex, Func<string, TWallet> deriveFunction)
+        public Account(ExtKey accountMasterKey)
         {
-            _accountIndex = accountIndex;
-            _deriveFunction = deriveFunction;
+            _masterKey = accountMasterKey;
+            _externalChain = _masterKey.Derive(0);
+            _internalChain = _masterKey.Derive(1);
         }
 
         TWallet IAccount<TWallet>.GetInternalWallet(uint addressIndex)
         {
-            var internalKeyPath = $"{_accountIndex}'/1'/{addressIndex}'";
-            var internalWallet = _deriveFunction(internalKeyPath);
-
-            return internalWallet;
+            var extKey = _internalChain.Derive(addressIndex);
+            return new TWallet()
+            {
+                PrivateKeyBytes = extKey.Key.PrivateKey
+            };
         }
 
         TWallet IAccount<TWallet>.GetExternalWallet(uint addressIndex)
         {
-            var externalKeyPath = $"{_accountIndex}'/0'/{addressIndex}'";
-            var externalWallet = _deriveFunction(externalKeyPath);
-
-            return externalWallet;
+            var extKey = _externalChain.Derive(addressIndex);
+            return new TWallet()
+            {
+                PrivateKeyBytes = extKey.Key.PrivateKey
+            };
         }
     }
 }

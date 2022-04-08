@@ -14,11 +14,11 @@ namespace HDWallet.Ed25519.Tests
         [Test]
         public void ShouldGenerateFromMnemonic()
         {
-            CardanoHDWalletEd25519 hdWallet = new CardanoHDWalletEd25519(mnemonic, string.Empty);
-            Assert.AreEqual(ReferenceSeed, hdWallet.BIP39Seed);
+            IHDWallet<CardanoSampleWallet> hdWallet = new CardanoHDWalletEd25519(mnemonic, string.Empty);
+            Assert.AreEqual(ReferenceSeed, ((CardanoHDWalletEd25519)hdWallet).BIP39Seed);
 
             // m/1852'/1815'
-            CardanoSampleWallet wallet = hdWallet.GetCoinTypeWallet();
+            CardanoSampleWallet wallet = hdWallet.GetMasterWallet();
 
             Assert.AreEqual(ReferencePrivateKey, wallet.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(ReferencePubKey, $"00{wallet.PublicKeyBytes.ToHexString()}");

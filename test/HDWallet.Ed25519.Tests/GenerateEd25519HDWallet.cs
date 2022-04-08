@@ -18,7 +18,7 @@ namespace HDWallet.Ed25519.Tests
         public void ShouldGenerateFromSeed1(string path, string privateKey, string publicKey)
         {
             TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(ReferenceSeed);
-            var account0 = hdWallet.GetWalletFromPath<SampleWallet>(path);
+            var account0 = hdWallet.GetWalletFromPath(path);
 
             Assert.AreEqual(privateKey, account0.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{account0.PublicKeyBytes.ToHexString()}");
@@ -36,7 +36,7 @@ namespace HDWallet.Ed25519.Tests
         public void ShouldGenerateFromSeed2(string path, string privateKey, string publicKey)
         {
             TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(ReferenceSeed2);
-            var account0 = hdWallet.GetWalletFromPath<SampleWallet>(path);
+            var account0 = hdWallet.GetWalletFromPath(path);
 
             Assert.AreEqual(privateKey, account0.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{account0.PublicKeyBytes.ToHexString()}");
@@ -46,7 +46,7 @@ namespace HDWallet.Ed25519.Tests
         public void ShouldGenerateCardanoFromSeedAndPath(string path, string privateKey, string publicKey)
         {
             TestHDWalletEd25519 hdWallet = new TestHDWalletEd25519(ReferenceSeed2);
-            var wallet = hdWallet.GetWalletFromPath<SampleWallet>(path);
+            var wallet = hdWallet.GetWalletFromPath(path);
 
             Assert.AreEqual(privateKey, wallet.PrivateKeyBytes.ToHexString());
             Assert.AreEqual(publicKey, $"00{wallet.PublicKeyBytes.ToHexString()}");

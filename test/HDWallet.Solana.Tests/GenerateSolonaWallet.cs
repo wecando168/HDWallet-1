@@ -45,7 +45,7 @@ namespace HDWallet.Solana.Tests
         public void ShouldGeneratedFromMnemonic()
         {
             var mnemonic = "dust dry odor unique impose craft adapt fatigue home bag kit primary advice rose stable error core shop entry vacuum pitch skill enhance pretty";
-            var hdWallet =new SolanaHdWallet(mnemonic, "123456");
+            IHDWallet<SolanaWallet> hdWallet =new SolanaHdWallet(mnemonic, "123456");
 
             var wallet = hdWallet.GetAccount(0).GetExternalWallet(0);
 

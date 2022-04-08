@@ -19,16 +19,14 @@ namespace HDWallet.Algorand.Tests
         public void ShouldGeneratedFromMnemonic()
         {
             var mnemonic = "segment inhale symptom olive cheese tissue vacuum lazy sketch salt enroll wink oyster hen glory food weasel comic glow legal cute diet fun real";
-            var hdWallet = new AlgorandHDWallet(mnemonic, "");
+            IHDWallet<AlgorandWallet> hdWallet = new AlgorandHDWallet(mnemonic, "");
 
             // var wallet = hdWallet.GetWalletFromPath<AlgorandWallet>("m/44'/283'/0'");
             var wallet = hdWallet.GetAccount(0).GetExternalWallet(1);
-            Console.WriteLine("Path: {0}", wallet.Path);
             Console.WriteLine("Address: {0}", wallet.Address);
             Console.WriteLine("PublicKey: {0}", wallet.PublicKeyBytes.ToHexString());
             Console.WriteLine("PrivateKey: {0}", wallet.PrivateKeyBytes.ToHexString());
 
-            Assert.AreEqual(expected: "m/44'/283'/0'/0'/1'", wallet.Path);
             Assert.AreEqual(expected: "5RKLKOVRU4WRWEKKI5I5Z6HTRNYA3XD6HGU34ZDRCDLJJ3DYQEOAOEWODY", wallet.Address);
             Assert.AreEqual(expected: "ec54b53ab1a72d1b114a4751dcf8f38b700ddc7e39a9be647110d694ec78811c", wallet.PublicKeyBytes.ToHexString());
             Assert.AreEqual(expected: "12c1a9991a216b2c8c86110e3bb6813920562e21090126b7813c525906f32f5f", wallet.PrivateKeyBytes.ToHexString());
