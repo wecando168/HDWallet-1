@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Nethereum.Web3" Version="3.8.0" />
+    <PackageReference Include="Nethereum.Web3" Version="4.2.0" />
     <PackageReference Include="NBitcoin.Secp256k1" Version="3.0.1" />
     <PackageReference Include="NBitcoin" Version="7.0.6" />
     <PackageReference Include="Blake2Core" Version="1.0.0" />

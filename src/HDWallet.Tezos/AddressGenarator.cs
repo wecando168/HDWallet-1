@@ -1,8 +1,8 @@
 ﻿using System;
-using Base58Check;
 using HDWallet.Core;
 using Konscious.Security.Cryptography;
 using NBitcoin;
+using NBitcoin.DataEncoders;
 
 namespace HDWallet.Tezos
 {
@@ -33,7 +33,7 @@ namespace HDWallet.Tezos
             Array.Copy(tz2, 0, msg, 0, tz2.Length);
             Array.Copy(pkNew, 0, msg, prefixLen, pkNew.Length);
 
-            return Base58CheckEncoding.Encode(msg);
+            return new Base58CheckEncoder().EncodeData(msg);
         }
     }
 }
