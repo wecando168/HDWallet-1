@@ -4,5 +4,6 @@ namespace HDWallet.Core
     {
         TWallet GetInternalWallet(uint addressIndex);
         TWallet GetExternalWallet(uint addressIndex);
+        string GetWif();
     }
 }

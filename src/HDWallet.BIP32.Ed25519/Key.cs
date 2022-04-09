@@ -12,7 +12,6 @@
 //    See the License for the specific language governing permissions and
 //    limitations under the License.
 
-using Chaos.NaCl;
 using System.Security.Cryptography;
 
 namespace HDWallet.BIP32.Ed25519

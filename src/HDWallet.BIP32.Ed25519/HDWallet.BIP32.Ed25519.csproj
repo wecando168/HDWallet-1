@@ -23,4 +23,8 @@
     <PackageReference Include="NBitcoin" Version="7.0.6" />
   </ItemGroup>
 
+  <PropertyGroup>
+    <NoWarn>CS0809</NoWarn>
+  </PropertyGroup>
+
 </Project>

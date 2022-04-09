@@ -52,5 +52,10 @@ namespace HDWallet.Ed25519
                 PrivateKeyBytes = extKey.Key.PrivateKey
             };
         }
+
+        string IAccount<TWallet>.GetWif()
+        {
+            return this._masterKey.GetWif();
+        }
     }
 }

@@ -80,5 +80,10 @@ namespace HDWallet.Secp256
                 PrivateKeyBytes = extKey.PrivateKey.ToBytes()
             };
         }
+
+        string IAccount<TWallet>.GetWif()
+        {
+            return this._masterKey.GetWif(Network.Main).ToWif();
+        }
     }
 }
