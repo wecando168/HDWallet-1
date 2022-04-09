@@ -59,6 +59,10 @@ namespace HDWallet.Algorand.Tests
 
             Assert.AreEqual(wallet.PublicKeyBytes, actualWallet.PublicKeyBytes);
             Assert.AreEqual(expected: "5RKLKOVRU4WRWEKKI5I5Z6HTRNYA3XD6HGU34ZDRCDLJJ3DYQEOAOEWODY", actualWallet.Address);
+
+            account0FromXprv = new Account<AlgorandWallet>(xprv);
+            actualWallet = account0FromXprv.GetExternalWallet(1);
+            Assert.AreEqual(expected: "5RKLKOVRU4WRWEKKI5I5Z6HTRNYA3XD6HGU34ZDRCDLJJ3DYQEOAOEWODY", actualWallet.Address);
         }
     }
 }
