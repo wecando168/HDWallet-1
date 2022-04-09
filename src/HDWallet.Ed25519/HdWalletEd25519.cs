@@ -28,7 +28,6 @@ namespace HDWallet.Ed25519
         IAccount<TWallet> IHDWallet<TWallet>.GetAccount(uint accountIndex)
         {
             var masterKey = _masterKey.Derive(accountIndex);
-
             return new Account<TWallet>(masterKey);
         }
 
@@ -37,14 +36,10 @@ namespace HDWallet.Ed25519
         /// </summary>
         /// <param name="accountMasterKey">Used to generate wallet</param>
         /// <returns></returns>
-        public static TWallet GetAccountFromMasterKey(string accountMasterKey)
+        public static IAccount<TWallet> GetAccountFromMasterKey(string accountMasterKey)
         {
-            throw new NotImplementedException();
-            // ExtKey extKey = ExtKey.Parse(accountMasterKey);
-
-            // return new TWallet() {
-            //     PrivateKeyBytes = extKey.Key.PrivateKey
-            // };
+            IAccount<TWallet> accountHDWallet = new Account<TWallet>(accountMasterKey, NBitcoin.Network.Main);
+            return accountHDWallet;
         }
 
         public TWallet GetWalletFromPath(string path)
