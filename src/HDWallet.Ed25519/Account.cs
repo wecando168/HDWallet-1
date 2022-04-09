@@ -21,6 +21,20 @@ namespace HDWallet.Ed25519
             _internalChain = _masterKey.Derive(1);
         }
 
+        public Account(string accountMasterKey)
+        {
+            _masterKey = ExtKey.CreateFromWif(accountMasterKey, NBitcoin.Network.Main);
+            _externalChain = _masterKey.Derive(0);
+            _internalChain = _masterKey.Derive(1);
+        }
+
+        public Account(string accountMasterKey, NBitcoin.Network network)
+        {
+            _masterKey = ExtKey.CreateFromWif(accountMasterKey, network);
+            _externalChain = _masterKey.Derive(0);
+            _internalChain = _masterKey.Derive(1);
+        }
+
         TWallet IAccount<TWallet>.GetInternalWallet(uint addressIndex)
         {
             var extKey = _internalChain.Derive(addressIndex);
