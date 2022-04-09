@@ -17,6 +17,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using NBitcoin;
 
 namespace HDWallet.BIP32.Ed25519
 {
@@ -93,5 +94,43 @@ namespace HDWallet.BIP32.Ed25519
 			(var childkey, var childcc)  = this.Key.Derivate(this.ChainCode, index + hardenedOffset);
 			return new ExtKey(childkey, childcc);
 		}
+
+
+        /// <summary>
+		/// Converts the extended key to the base58 representation for Mainnet.
+		/// </summary>
+		public string GetWif()
+        {
+            return GetWif(Network.Main);
+        }
+
+        /// <summary>
+		/// Converts the extended key to the base58 representation, within the specified network.
+		/// </summary>
+		public string GetWif(Network network)
+		{
+			BitcoinExtKey bitcoinExtKey = new BitcoinExtKey(
+                new NBitcoin.ExtKey(
+                    new NBitcoin.Key(
+                        this.Key.PrivateKey
+                    ), 
+                    this.ChainCode), 
+                network);
+
+            return bitcoinExtKey.ToWif();
+		}
+
+        public static ExtKey CreateFromWif(string base58)
+        {
+            return CreateFromWif(base58, Network.Main);
+        }
+        
+        public static ExtKey CreateFromWif(string base58, Network expectedNetwork)
+        {
+            var parsed = new BitcoinExtKey(base58, expectedNetwork).ExtKey;
+            ExtKey extKey = new ExtKey(parsed.PrivateKey.ToBytes(), parsed.ChainCode);
+
+            return extKey;
+        }
     }
 }
