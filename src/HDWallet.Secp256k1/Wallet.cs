@@ -2,7 +2,6 @@ using HDWallet.Core;
 using NBitcoin;
 using NBitcoin.Crypto;
 using NBitcoin.DataEncoders;
-using NBitcoin.Secp256k1;
 using System;
 
 namespace HDWallet.Secp256k1
@@ -61,25 +60,25 @@ namespace HDWallet.Secp256k1
             return Key.Parse(privKeyEncoded, Network.Main);
         }
 
-        public Signature SignLegacy(byte[] message)
-        {
-            if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
+        // public Signature SignLegacy(byte[] message)
+        // {
+        //     if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
 
-            NBitcoin.Secp256k1.ECPrivKey privKey = Context.Instance.CreateECPrivKey(new Scalar(PrivateKey.ToBytes()));
-            if (!privKey.TrySignRecoverable(message, out SecpRecoverableECDSASignature sigRec))
-            {
-                throw new InvalidOperationException();
-            }
+        //     NBitcoin.Secp256k1.ECPrivKey privKey = Context.Instance.CreateECPrivKey(new Scalar(PrivateKey.ToBytes()));
+        //     if (!privKey.TrySignRecoverable(message, out SecpRecoverableECDSASignature sigRec))
+        //     {
+        //         throw new InvalidOperationException();
+        //     }
 
-            var (r, s, recId) = sigRec;
+        //     var (r, s, recId) = sigRec;
 
-            return new Signature()
-            {
-                R = r.ToBytes(),
-                S = s.ToBytes(),
-                RecId = recId
-            };
-        }
+        //     return new Signature()
+        //     {
+        //         R = r.ToBytes(),
+        //         S = s.ToBytes(),
+        //         RecId = recId
+        //     };
+        // }
 
         Signature IWallet.Sign(byte[] message)
         {

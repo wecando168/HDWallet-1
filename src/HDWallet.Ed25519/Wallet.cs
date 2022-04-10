@@ -1,8 +1,8 @@
 using System;
 using HDWallet.Core;
-using Ed25519;
 using NBitcoin.DataEncoders;
 using HDWallet.BIP32.Ed25519;
+using System.Linq;
 
 namespace HDWallet.Ed25519
 {
@@ -22,10 +22,7 @@ namespace HDWallet.Ed25519
                 }
                 privateKey = value;
 
-                ReadOnlySpan<byte> privateKeySpan = privateKey.AsSpan();
-                var publicKey = privateKeySpan.ExtractPublicKey();
-
-                PublicKeyBytes = publicKey.ToArray();
+                PublicKeyBytes = Chaos.NaCl.Ed25519.PublicKeyFromSeed(privateKey);
             }
         }
         public byte[] ExpandedPrivateKey {
@@ -70,13 +67,12 @@ namespace HDWallet.Ed25519
 
         protected abstract IAddressGenerator GetAddressGenerator();
 
+        // TODO: Test it, not tested
         public Signature Sign(byte[] message)
         {
             // if (message.Length != 32) throw new ArgumentException(paramName: nameof(message), message: "Message should be 32 bytes");
 
-            var signature = Signer.Sign(message, this.PrivateKeyBytes, this.PublicKeyBytes);
-            var signatureHex = signature.ToArray().ToHexString();
-
+            byte[] signature = Chaos.NaCl.Ed25519.Sign(message, Chaos.NaCl.Ed25519.ExpandedPrivateKeyFromSeed(this.PrivateKeyBytes));
             
             var rsigPad = new byte[32];
             Array.Copy(signature.ToArray(), 0, rsigPad, rsigPad.Length - 32, 32);
@@ -91,6 +87,7 @@ namespace HDWallet.Ed25519
             };
         }
 
+        // TODO: Implement this
         public bool Verify(byte[] message, Signature sig)
         {
             throw new NotImplementedException();

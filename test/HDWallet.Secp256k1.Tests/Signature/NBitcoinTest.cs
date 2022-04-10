@@ -1,7 +1,7 @@
 using System;
 using NBitcoin;
+using NBitcoin.Crypto;
 using NBitcoin.DataEncoders;
-using NBitcoin.Secp256k1;
 using NUnit.Framework;
 
 namespace Test
@@ -12,8 +12,9 @@ namespace Test
 
         public byte[] Sign(byte[] message)
         {
-            ECPrivKey privKey = Context.Instance.CreateECPrivKey(PrivateKey.ToBytes());
-            privKey.TrySignECDSA(message, out SecpECDSASignature sigRec);
+            // ECPrivKey privKey = Context.Instance.CreateECPrivKey(PrivateKey.ToBytes());
+            // privKey.TrySignECDSA(message, out SecpECDSASignature sigRec);
+            ECDSASignature sigRec = PrivateKey.Sign(new uint256(message));
             return sigRec.ToDER();
         }
 

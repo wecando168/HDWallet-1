@@ -1,9 +1,10 @@
 using NUnit.Framework;
 using System;
-using NBitcoin.Secp256k1;
 using NBitcoin.DataEncoders;
 using Nethereum.Util;
 using HDWallet.Core;
+using NBitcoin;
+using System.Linq;
 
 namespace HDWallet.Tron.Tests
 {
@@ -26,13 +27,10 @@ namespace HDWallet.Tron.Tests
         {
             var privateKey = Encoders.Hex.DecodeData("08089C24EC3BAEB34254DDF5297CF8FBB8E031496FF67B4EFACA738FF9EBD455");
 
-            NBitcoin.Secp256k1.ECPrivKey privKey = Context.Instance.CreateECPrivKey(new Scalar(privateKey));
-            ECPubKey pubKey = privKey.CreatePubKey();
-            
-            var x = pubKey.Q.x.ToBytes();
-            var y = pubKey.Q.y.ToBytes();
+            Key privKey = new Key(privateKey);
+            PubKey pubKey = privKey.PubKey;
 
-            var pubKeyUncomp = Helper.Concat(x, y);
+            var pubKeyUncomp = pubKey.Decompress().ToBytes().Skip(1).ToArray(); // Skip version byte
             Assert.AreEqual(
                 "ee63599802b5d31a29c95cc7df04f427e8f0a124bed9333f3a80404acfc3127659c540d0162dedb81ac5f74b2deb4962656efe112b252e54ac3ba1207cd1fb10",
                 Encoders.Hex.EncodeData(pubKeyUncomp)
