@@ -65,7 +65,7 @@ namespace HDWallet.Stacks
             }
             
             var doubleHashedChecksumInputBytes = NBitcoin.Crypto.Hashes.SHA256(NBitcoin.Crypto.Hashes.SHA256(checksumInputBytes));
-            var checksumHex = doubleHashedChecksumInputBytes[..4].ToHexString();
+            var checksumHex = doubleHashedChecksumInputBytes.Take(4).ToArray().ToHexString();
             
             var inputHex = $"{pubKeyHash160Hex}{checksumHex}";
             var inputBytes = inputHex.FromHexToByteArray();
