@@ -1,11 +1,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="SimpleBase" Version="2.1.0" />    
+    <PackageReference Include="SimpleBase" Version="4.0.0" />    
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;netstandard2.1;net5.0</TargetFrameworks>
+    <TargetFrameworks>net6.0</TargetFrameworks>
 
     <Title></Title>
     <Description></Description>

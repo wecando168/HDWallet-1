@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
 
     <Title></Title>
     <Description></Description>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SimpleBase" Version="2.1.0" />
+    <PackageReference Include="SimpleBase" Version="4.0.0" />
   </ItemGroup>
 
   <ItemGroup>
